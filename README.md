@@ -96,7 +96,7 @@ The LLM never generates SQL and never connects to the database.
     └── iam.json                  </span><span># Least-privilege IAM</span><span>
 </span></span></code></div></div></pre>
 
-## 🧩 Design Principles Applied
+## Design Principles Applied
 
 ### Clean Architecture
 
