@@ -3,8 +3,6 @@ from typing import Any, Callable, Dict, Mapping
 
 from src.utils.errors import ToolRoutingError
 
-# Optional: if you add src/llm/tool_names.py use these imports.
-# Otherwise, replace tool names with plain strings.
 from src.llm.tool_names import (
     GET_MODULES,
     GET_TOPICS_BY_MODULE,
@@ -52,7 +50,6 @@ def _get_registry() -> Mapping[str, ToolHandler]:
     Handlers are imported lazily to avoid heavy imports at cold start.
     """
     # NOTE: These handlers don't exist yet. In Feature 5, they will wrap db/queries + rag.
-    # For now, you can implement them as simple functions in the relevant future modules.
     from src.app.tool_handlers import (  # noqa: WPS433 (local import by design)
         get_modules_handler,
         get_topics_by_module_handler,
