@@ -11,13 +11,16 @@ This file intentionally contains no business logic.
 
 from typing import Any, Dict
 
-from src.config.constants import (
+from src.config.service_constants import (
     SERVICE_NAME,
     SERVICE_PHASE,
     STATUS_ALIVE,
-    HTTP_STATUS_OK,
+)
+
+from src.config.http_constants import (
     CONTENT_TYPE_HEADER,
     CONTENT_TYPE_JSON,
+    HTTP_STATUS_OK,
 )
 
 
@@ -27,10 +30,6 @@ def _build_response(
 ) -> Dict[str, Any]:
     """
     Standard HTTP-style response builder.
-
-    Compatible with:
-    - API Gateway (HTTP / REST)
-    - Local testing
     """
 
     return {

@@ -1,0 +1,9 @@
+DEFAULT_LLM_PROVIDER = "openai"
+DEFAULT_OPENAI_MODEL = "gpt-4.1"
+
+LLM_ROLE_USER = "user"
+LLM_ROLE_SYSTEM = "system"
+LLM_ROLE_ASSISTANT = "assistant"
+
+LLM_MESSAGE_ROLE_KEY = "role"
+LLM_MESSAGE_CONTENT_KEY = "content"
