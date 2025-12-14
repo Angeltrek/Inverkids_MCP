@@ -11,6 +11,10 @@ This file intentionally contains no business logic.
 
 from typing import Any, Dict
 
+from src.app.router import route_tool_call
+from src.llm.client import get_llm_client
+from src.llm.tools import get_llm_tools
+
 from src.config.service_constants import (
     SERVICE_NAME,
     SERVICE_PHASE,
@@ -22,7 +26,6 @@ from src.config.http_constants import (
     CONTENT_TYPE_JSON,
     HTTP_STATUS_OK,
 )
-
 
 def _build_response(
     body: Dict[str, Any],
@@ -44,12 +47,17 @@ def _build_response(
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     """
     AWS Lambda handler.
+
+    Future flow:
+    - receive prompt
+    - call LLM with tools
+    - route tool calls
+    - return response
     """
 
-    response_body = {
+    return _build_response({
         "service": SERVICE_NAME,
         "status": STATUS_ALIVE,
         "phase": SERVICE_PHASE,
-    }
+    })
 
-    return _build_response(response_body)

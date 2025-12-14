@@ -1,4 +1,5 @@
 from openai import OpenAI
+from typing import Dict, Any, List, Optional
 
 from src.llm.contracts import LLMClient
 from src.config.settings import LLMSettings
@@ -18,7 +19,12 @@ class OpenAIClient(LLMClient):
         self._client = OpenAI(api_key=settings.api_key)
         self._model = settings.model
 
-    def generate(self, prompt: str) -> str:
+    def generate(
+        self,
+        prompt: str,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> Dict[str, Any]:
+
         response = self._client.chat.completions.create(
             model=self._model,
             messages=[
@@ -27,6 +33,20 @@ class OpenAIClient(LLMClient):
                     LLM_MESSAGE_CONTENT_KEY: prompt,
                 }
             ],
+            tools=tools,
         )
 
-        return response.choices[0].message.content or ""
+        message = response.choices[0].message
+
+        if message.tool_calls:
+            tool_call = message.tool_calls[0]
+            return {
+                "tool_call": {
+                    "name": tool_call.function.name,
+                    "arguments": tool_call.function.arguments,
+                }
+            }
+
+        return {
+            "content": message.content or "",
+        }

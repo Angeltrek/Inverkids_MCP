@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 
 from .curriculum import curriculum_tools
-from .content import content_tools
+from .texts import text_tools
 from .activities import activity_tools
 from .performance import performance_tools
 from .users import user_tools
@@ -15,7 +15,7 @@ def get_llm_tools() -> List[Dict[str, Any]]:
 
     return (
         curriculum_tools()
-        + content_tools()
+        + text_tools()
         + activity_tools()
         + performance_tools()
         + user_tools()
