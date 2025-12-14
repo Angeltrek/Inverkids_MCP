@@ -1,6 +1,6 @@
 from typing import Dict, Callable, Any
 
-from src.config.tool_names import (
+from src.config.constants.tool_names import (
     GET_MODULES,
     GET_TOPICS_BY_MODULE,
     GET_TEXTS_BY_TOPIC,

@@ -1,3 +1,4 @@
+import json
 from dataclasses import dataclass
 from typing import Any, Dict
 
@@ -10,7 +11,6 @@ class ToolCall:
     name: str
     arguments: Dict[str, Any]
 
-
 def parse_tool_call(raw: Dict[str, Any]) -> ToolCall:
     if not isinstance(raw, dict):
         raise ToolRoutingError("Tool call must be a dictionary")
@@ -20,6 +20,14 @@ def parse_tool_call(raw: Dict[str, Any]) -> ToolCall:
 
     if not isinstance(name, str) or not name.strip():
         raise ToolRoutingError("Tool call missing valid 'name'")
+
+    if isinstance(arguments, str):
+        try:
+            arguments = json.loads(arguments)
+        except json.JSONDecodeError as exc:
+            raise ToolRoutingError(
+                "Tool call 'arguments' is not valid JSON"
+            ) from exc
 
     if not isinstance(arguments, dict):
         raise ToolRoutingError("Tool call 'arguments' must be a dictionary")

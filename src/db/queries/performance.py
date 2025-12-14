@@ -43,7 +43,7 @@ def get_students_by_performance(
             s.name AS school_name,
             AVG(g.grade) AS average_grade
         FROM grades g
-        JOIN users u ON u.id = g.student_id
+        JOIN users u ON u.id = g.student_id::uuid
         JOIN schools s ON s.id = u.school_id
         GROUP BY u.id, u.name, s.name
         ORDER BY average_grade {direction}

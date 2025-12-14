@@ -1,11 +1,11 @@
 import os
 from dataclasses import dataclass
-from src.config.env_constants import (
+from src.config.constants.env_constants import (
     ENV_LLM_PROVIDER,
     ENV_OPENAI_API_KEY,
     ENV_OPENAI_MODEL,
 )
-from src.config.llm_constants import (
+from src.config.constants.llm_constants import (
     DEFAULT_LLM_PROVIDER,
     DEFAULT_OPENAI_MODEL,
 )
