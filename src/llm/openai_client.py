@@ -3,11 +3,6 @@ from typing import Dict, Any, List, Optional
 
 from src.llm.contracts import LLMClient
 from src.config.settings import LLMSettings
-from src.config.constants.llm_constants import (
-    LLM_ROLE_USER,
-    LLM_MESSAGE_ROLE_KEY,
-    LLM_MESSAGE_CONTENT_KEY,
-)
 
 
 class OpenAIClient(LLMClient):
@@ -21,19 +16,16 @@ class OpenAIClient(LLMClient):
 
     def generate(
         self,
-        prompt: str,
+        *,
+        messages: List[Dict[str, Any]],
         tools: Optional[List[Dict[str, Any]]] = None,
     ) -> Dict[str, Any]:
 
         response = self._client.chat.completions.create(
             model=self._model,
-            messages=[
-                {
-                    LLM_MESSAGE_ROLE_KEY: LLM_ROLE_USER,
-                    LLM_MESSAGE_CONTENT_KEY: prompt,
-                }
-            ],
+            messages=messages,
             tools=tools,
+            tool_choice="auto",
         )
 
         message = response.choices[0].message
@@ -42,6 +34,7 @@ class OpenAIClient(LLMClient):
             tool_call = message.tool_calls[0]
             return {
                 "tool_call": {
+                    "id": tool_call.id,
                     "name": tool_call.function.name,
                     "arguments": tool_call.function.arguments,
                 }

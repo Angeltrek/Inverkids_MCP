@@ -4,7 +4,7 @@ from typing import Dict, Any
 
 @dataclass(frozen=True)
 class ContextDocument:
-    type: str          # "text", "activity", "module", "user", "performance"
+    type: str
     id: str
     title: str
     content: str

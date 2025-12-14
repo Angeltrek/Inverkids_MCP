@@ -27,9 +27,6 @@ def retrieve_context(
 
     context: List[ContextDocument] = []
 
-    # ─────────────────────────────────────────────
-    # Textual content (highest semantic relevance)
-    # ─────────────────────────────────────────────
     context.extend(
         retrieve_texts(
             query=query,
@@ -38,9 +35,6 @@ def retrieve_context(
         )
     )
 
-    # ─────────────────────────────────────────────
-    # Activities (topic-scoped only)
-    # ─────────────────────────────────────────────
     if topic_id:
         context.extend(
             retrieve_activities(
@@ -49,9 +43,6 @@ def retrieve_context(
             )
         )
 
-    # ─────────────────────────────────────────────
-    # Curriculum structure (module / level)
-    # ─────────────────────────────────────────────
     if level:
         context.extend(
             retrieve_modules(
@@ -61,9 +52,6 @@ def retrieve_context(
             )
         )
 
-    # ─────────────────────────────────────────────
-    # Users (names & roles only — no grades)
-    # ─────────────────────────────────────────────
     context.extend(
         retrieve_users(
             query=query,
