@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any, Dict, List, Optional
 
 
 class LLMClient(ABC):
@@ -7,8 +8,16 @@ class LLMClient(ABC):
     """
 
     @abstractmethod
-    def generate(self, prompt: str) -> str:
+    def generate(
+        self,
+        prompt: str,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> Dict[str, Any]:
         """
-        Generate a textual response from a prompt.
+        Generate a response from a prompt.
+
+        The response may be:
+        - plain text
+        - a tool call
         """
         raise NotImplementedError
