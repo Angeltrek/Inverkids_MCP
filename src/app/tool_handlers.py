@@ -1,37 +1,87 @@
-from typing import Any, Dict
+from typing import Dict, Any
 
+from src.db.queries.curriculum import (
+    search_modules,
+    get_topics_by_module,
+)
+from src.db.queries.texts import get_texts_by_topic
+from src.db.queries.activities import (
+    get_activity_by_id,
+    get_activities_by_topic,
+)
+from src.db.queries.performance import (
+    get_student_grade_summary,
+    get_students_by_performance,
+)
 
 def get_modules_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "get_modules", "args": args}
+    level = args["level"]
+    search = args.get("search")
 
+    modules = search_modules(level=level, search=search)
+
+    return {"modules": modules}
 
 def get_topics_by_module_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "get_topics_by_module", "args": args}
+    module_id = args["module_id"]
 
+    topics = get_topics_by_module(module_id)
+
+    return {"topics": topics}
 
 def get_texts_by_topic_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "get_texts_by_topic", "args": args}
+    topic_id = args["topic_id"]
+    limit = args.get("limit", 5)
 
+    texts = get_texts_by_topic(topic_id=topic_id, limit=limit)
+
+    return {"texts": texts}
 
 def get_activity_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "get_activity", "args": args}
+    activity_id = args["activity_id"]
 
+    activity = get_activity_by_id(activity_id)
+
+    return {"activity": activity}
 
 def get_activities_by_topic_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "get_activities_by_topic", "args": args}
+    topic_id = args["topic_id"]
+    activity_type = args.get("activity_type")
+    limit = args.get("limit", 5)
 
+    activities = get_activities_by_topic(
+        topic_id=topic_id,
+        activity_type=activity_type,
+        limit=limit,
+    )
+
+    return {"activities": activities}
 
 def get_student_grade_summary_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "get_student_grade_summary", "args": args}
+    scope = args["scope"]
+    scope_id = args["scope_id"]
 
+    summary = get_student_grade_summary(
+        scope=scope,
+        scope_id=scope_id,
+    )
+
+    return {"summary": summary}
 
 def get_students_by_performance_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "get_students_by_performance", "args": args}
+    order = args["order"]
+    limit = args.get("limit", 5)
 
+    students = get_students_by_performance(
+        order=order,
+        limit=limit,
+    )
 
-def search_users_by_name_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "search_users_by_name", "args": args}
-
+    return {"students": students}
 
 def request_guardian_contact_handler(args: Dict[str, Any]) -> Dict[str, Any]:
-    return {"tool": "request_guardian_contact", "args": args}
+    return {
+        "status": "queued",
+        "reason": args["reason"],
+        "channel": args["channel"],
+    }
