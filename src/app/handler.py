@@ -15,13 +15,13 @@ from src.app.router import route_tool_call
 from src.llm.client import get_llm_client
 from src.llm.tools import get_llm_tools
 
-from src.config.service_constants import (
+from src.config.constants.service_constants import (
     SERVICE_NAME,
     SERVICE_PHASE,
     STATUS_ALIVE,
 )
 
-from src.config.http_constants import (
+from src.config.constants.http_constants import (
     CONTENT_TYPE_HEADER,
     CONTENT_TYPE_JSON,
     HTTP_STATUS_OK,

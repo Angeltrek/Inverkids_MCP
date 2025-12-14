@@ -3,7 +3,7 @@ from typing import Dict, Any, List, Optional
 
 from src.llm.contracts import LLMClient
 from src.config.settings import LLMSettings
-from src.config.llm_constants import (
+from src.config.constants.llm_constants import (
     LLM_ROLE_USER,
     LLM_MESSAGE_ROLE_KEY,
     LLM_MESSAGE_CONTENT_KEY,

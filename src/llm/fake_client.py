@@ -1,7 +1,7 @@
 from typing import Dict, Any, List, Optional
 
 from src.llm.contracts import LLMClient
-from config.tool_names import GET_ACTIVITY
+from src.config.constants.tool_names import GET_ACTIVITY
 
 
 class FakeLLMClient(LLMClient):
