@@ -31,13 +31,15 @@ class OpenAIClient(LLMClient):
         message = response.choices[0].message
 
         if message.tool_calls:
-            tool_call = message.tool_calls[0]
             return {
-                "tool_call": {
-                    "id": tool_call.id,
-                    "name": tool_call.function.name,
-                    "arguments": tool_call.function.arguments,
-                }
+                "tool_calls": [
+                    {
+                        "id": tc.id,
+                        "name": tc.function.name,
+                        "arguments": tc.function.arguments,
+                    }
+                    for tc in message.tool_calls
+                ]
             }
 
         return {

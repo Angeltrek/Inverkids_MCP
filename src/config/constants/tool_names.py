@@ -1,3 +1,4 @@
+# tool names used in the application
 GET_MODULES = "get_modules"
 GET_TOPICS_BY_MODULE = "get_topics_by_module"
 GET_TEXTS_BY_TOPIC = "get_texts_by_topic"
