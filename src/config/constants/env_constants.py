@@ -1,3 +1,4 @@
+# LLM configuration environment variables
 ENV_LLM_PROVIDER = "LLM_PROVIDER"
 ENV_OPENAI_API_KEY = "OPENAI_API_KEY"
 ENV_OPENAI_MODEL = "OPENAI_MODEL"

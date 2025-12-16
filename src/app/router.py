@@ -1,47 +1,74 @@
 import json
 from dataclasses import dataclass
-from typing import Any, Dict
+from typing import Any, Dict, Mapping, Callable
 
 from src.utils.errors import ToolRoutingError
-from src.app.tool_handlers.registry import get_tool_handler_registry
+
+
+ToolArguments = Dict[str, Any]
+ToolPayload = Mapping[str, Any]
+ToolHandler = Callable[[ToolArguments], Dict[str, Any]]
+ToolRegistry = Mapping[str, ToolHandler]
 
 
 @dataclass(frozen=True)
 class ToolCall:
     name: str
-    arguments: Dict[str, Any]
+    arguments: ToolArguments
 
-def parse_tool_call(raw: Dict[str, Any]) -> ToolCall:
-    if not isinstance(raw, dict):
-        raise ToolRoutingError("Tool call must be a dictionary")
 
-    name = raw.get("name")
-    arguments = raw.get("arguments")
+def _decode_arguments(raw: Any) -> ToolArguments:
+    if isinstance(raw, dict):
+        return raw
 
-    if not isinstance(name, str) or not name.strip():
-        raise ToolRoutingError("Tool call missing valid 'name'")
-
-    if isinstance(arguments, str):
+    if isinstance(raw, str):
         try:
-            arguments = json.loads(arguments)
+            decoded = json.loads(raw)
         except json.JSONDecodeError as exc:
             raise ToolRoutingError(
-                "Tool call 'arguments' is not valid JSON"
+                "Tool call arguments must be valid JSON"
             ) from exc
 
-    if not isinstance(arguments, dict):
-        raise ToolRoutingError("Tool call 'arguments' must be a dictionary")
+        if not isinstance(decoded, dict):
+            raise ToolRoutingError(
+                "Decoded tool call arguments must be a dictionary"
+            )
 
-    return ToolCall(name=name, arguments=arguments)
+        return decoded
+
+    raise ToolRoutingError(
+        "Tool call arguments must be a dictionary or JSON string"
+    )
 
 
-def route_tool_call(raw_tool_call: Dict[str, Any]) -> Dict[str, Any]:
+def parse_tool_call(payload: ToolPayload) -> ToolCall:
+    if not isinstance(payload, Mapping):
+        raise ToolRoutingError("Tool call payload must be a mapping")
+
+    name = payload.get("name")
+    raw_arguments = payload.get("arguments")
+
+    if not isinstance(name, str) or not name.strip():
+        raise ToolRoutingError("Tool call must include a valid 'name'")
+
+    arguments = _decode_arguments(raw_arguments)
+
+    return ToolCall(
+        name=name.strip(),
+        arguments=arguments,
+    )
+
+
+def route_tool_call(
+    raw_tool_call: ToolPayload,
+    registry: ToolRegistry,
+) -> Dict[str, Any]:
     tool_call = parse_tool_call(raw_tool_call)
 
-    registry = get_tool_handler_registry()
     handler = registry.get(tool_call.name)
-
     if handler is None:
-        raise ToolRoutingError(f"Tool '{tool_call.name}' is not supported")
+        raise ToolRoutingError(
+            f"Unsupported tool: '{tool_call.name}'"
+        )
 
     return handler(tool_call.arguments)
