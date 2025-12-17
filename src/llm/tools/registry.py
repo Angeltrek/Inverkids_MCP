@@ -1,11 +1,10 @@
 from typing import List, Dict, Any
 
-from .curriculum import curriculum_tools
-from .texts import text_tools
-from .activities import activity_tools
-from .performance import performance_tools
-from .users import user_tools
-from .communication import communication_tools
+from .catalog import catalog_tools
+from .courses import courses_tools
+from .groups import groups_tools
+from .profile import profile_tools
+from .statistics import statistics_tools
 
 
 def get_llm_tools() -> List[Dict[str, Any]]:
@@ -14,10 +13,9 @@ def get_llm_tools() -> List[Dict[str, Any]]:
     """
 
     return (
-        curriculum_tools()
-        + text_tools()
-        + activity_tools()
-        + performance_tools()
-        + user_tools()
-        + communication_tools()
+        catalog_tools()
+        + courses_tools()
+        + groups_tools()
+        + profile_tools()
+        + statistics_tools()
     )

@@ -1,7 +1,7 @@
 from typing import Dict, Any, List, Optional
 
 from src.llm.contracts import LLMClient
-from src.config.constants.tool_names import GET_ACTIVITY
+from src.config.constants.tool_names import GET_COURSES
 
 
 class FakeLLMClient(LLMClient):
@@ -17,7 +17,7 @@ class FakeLLMClient(LLMClient):
 
         return {
             "tool_call": {
-                "name": GET_ACTIVITY,
+                "name": GET_COURSES,
                 "arguments": {
                     "activity_id": "test-activity-id",
                 },

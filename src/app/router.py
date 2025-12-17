@@ -2,6 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import Any, Dict, Mapping, Callable
 
+from src.backend.client import BackendClient
 from src.utils.errors import ToolRoutingError
 
 
@@ -62,6 +63,7 @@ def parse_tool_call(payload: ToolPayload) -> ToolCall:
 def route_tool_call(
     raw_tool_call: ToolPayload,
     registry: ToolRegistry,
+    backend_client: BackendClient,
 ) -> Dict[str, Any]:
     tool_call = parse_tool_call(raw_tool_call)
 
@@ -71,4 +73,7 @@ def route_tool_call(
             f"Unsupported tool: '{tool_call.name}'"
         )
 
-    return handler(tool_call.arguments)
+    return handler(
+        tool_call.arguments,
+        backend_client=backend_client,
+    )

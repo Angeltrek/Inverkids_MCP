@@ -1,6 +1,7 @@
 import json
 from typing import List, Dict, Any
 
+from src.backend.client import BackendClient
 from src.app.router import route_tool_call
 from src.llm.client import get_llm_client
 from src.llm.tools.registry import get_llm_tools
@@ -22,7 +23,7 @@ from src.config.constants.llm_constants import (
 )
 
 
-def execute_agent(prompt: str) -> str:
+def execute_agent(prompt: str, backend_client: BackendClient) -> str:
     """
     Executes an agentic reasoning loop.
 
@@ -51,6 +52,7 @@ def execute_agent(prompt: str) -> str:
                 tool_calls=tool_calls,
                 messages=messages,
                 registry=tool_registry,
+                backend_client=backend_client,
             )
             continue
 
@@ -67,6 +69,7 @@ def _handle_tool_calls(
     tool_calls: List[Dict[str, Any]],
     messages: List[Dict[str, Any]],
     registry: Any,
+    backend_client: BackendClient,
 ) -> None:
     """
     Executes tool calls and appends their results to the conversation.
@@ -75,7 +78,11 @@ def _handle_tool_calls(
     for tool_call in tool_calls:
         print(f"[STEP {step + 1}] TOOL CALL:", tool_call)
 
-        tool_result = route_tool_call(tool_call, registry)
+        tool_result = route_tool_call(
+            tool_call, 
+            registry,
+            backend_client
+        )
 
         messages.append({
             "role": LLM_ROLE_ASSISTANT,

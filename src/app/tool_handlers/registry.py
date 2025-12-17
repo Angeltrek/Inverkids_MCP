@@ -1,65 +1,65 @@
 from typing import Dict, Callable, Any
 
-from src.config.constants.tool_names import (
-    GET_MODULES,
-    GET_TOPICS_BY_MODULE,
-    GET_TEXTS_BY_TOPIC,
-    GET_ACTIVITY,
-    GET_ACTIVITIES_BY_TOPIC,
-    GET_STUDENT_GRADE_SUMMARY,
-    GET_STUDENTS_BY_PERFORMANCE,
-    SEARCH_USERS_BY_NAME,
-    REQUEST_GUARDIAN_CONTACT,
-    SEARCH_TEXTS,
+from src.config.constants.tool_names import *
+
+from src.app.tool_handlers.catalog import (
+    get_full_catalog_handler,
 )
 
-from .curriculum import (
-    get_modules_handler,
-    get_topics_by_module_handler,
+from src.app.tool_handlers.courses import (
+    get_courses_handler,
+    get_courses_by_user_type_handler,
+    get_courses_names_handler,
+    get_courses_data_handler,
 )
 
-from .texts import (
-    get_texts_by_topic_handler,
-    search_texts_handler,
+from src.app.tool_handlers.groups import (
+    get_groups_handler,
+    get_groups_by_level_handler,
+    get_group_users_handler,
 )
 
-from .activities import (
-    get_activity_handler,
-    get_activities_by_topic_handler,
+from src.app.tool_handlers.profile import (
+    get_profile_handler,
 )
 
-from .performance import (
-    get_student_grade_summary_handler,
-    get_students_by_performance_handler,
+from src.app.tool_handlers.statistics import (
+    grades_handler,
+    rates_handler,
+    get_stats_handler,
+    get_stats_user_handler,
+    get_overview_handler,
+    get_overview_groups_handler,
+    get_group_progress_handler,
+    get_activity_rate_handler,
+    get_inactive_users_handler,
 )
 
-from .users import (
-    search_users_by_name_handler,
-)
-
-from .communication import (
-    request_guardian_contact_handler,
-)
-
-
-ToolHandler = Callable[[Dict[str, Any]], Dict[str, Any]]
+ToolHandler = Callable[..., Dict[str, Any]]
 
 
 def get_tool_handler_registry() -> Dict[str, ToolHandler]:
     return {
-        GET_MODULES: get_modules_handler,
-        GET_TOPICS_BY_MODULE: get_topics_by_module_handler,
-        
-        GET_TEXTS_BY_TOPIC: get_texts_by_topic_handler,
-        SEARCH_TEXTS: search_texts_handler,
+        GET_FULL_CATALOG: get_full_catalog_handler,
 
-        GET_ACTIVITY: get_activity_handler,
-        GET_ACTIVITIES_BY_TOPIC: get_activities_by_topic_handler,
+        GET_COURSES: get_courses_handler,
+        GET_COURSES_BY_USER_TYPE: get_courses_by_user_type_handler,
+        GET_COURSES_NAMES: get_courses_names_handler,
+        GET_COURSES_DATA: get_courses_data_handler,
 
-        GET_STUDENT_GRADE_SUMMARY: get_student_grade_summary_handler,
-        GET_STUDENTS_BY_PERFORMANCE: get_students_by_performance_handler,
+        GET_GROUPS: get_groups_handler,
+        GET_GROUPS_BY_LEVEL: get_groups_by_level_handler,
+        GET_GROUP_USERS: get_group_users_handler,
 
-        SEARCH_USERS_BY_NAME: search_users_by_name_handler,
+        GET_PROFILE: get_profile_handler,
 
-        REQUEST_GUARDIAN_CONTACT: request_guardian_contact_handler,
+        GET_GRADES: grades_handler,
+        GET_RATES: rates_handler,
+        GET_STATS: get_stats_handler,
+        GET_STATS_USER: get_stats_user_handler,
+        GET_OVERVIEW: get_overview_handler,
+        GET_OVERVIEW_GROUPS: get_overview_groups_handler,
+        GET_GROUP_PROGRESS: get_group_progress_handler,
+        GET_ACTIVITY_RATE: get_activity_rate_handler,
+        GET_INACTIVE_USERS: get_inactive_users_handler,
     }
