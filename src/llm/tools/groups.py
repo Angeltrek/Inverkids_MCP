@@ -22,7 +22,10 @@ def groups_tools() -> List[Dict[str, Any]]:
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "level": {"type": "string"},
+                        "level": {
+                            "type": "string",
+                            "description": "Academic level (e.g. primaria, secundaria, 1, 2, 3, 4, 5, 6, 7, 8, 9).",
+                        },
                     },
                     "required": ["level"],
                 },

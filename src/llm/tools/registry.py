@@ -5,6 +5,7 @@ from .courses import courses_tools
 from .groups import groups_tools
 from .profile import profile_tools
 from .statistics import statistics_tools
+from .topics import topic_tools
 
 
 def get_llm_tools() -> List[Dict[str, Any]]:
@@ -18,4 +19,5 @@ def get_llm_tools() -> List[Dict[str, Any]]:
         + groups_tools()
         + profile_tools()
         + statistics_tools()
+        + topic_tools()
     )
