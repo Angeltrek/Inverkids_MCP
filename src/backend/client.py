@@ -8,7 +8,7 @@ from src.config.constants.http_constants import (
 )
 
 class BackendClient:
-    def __init__(self, *, base_url: str, token: str, timeout: int = 10):
+    def __init__(self, *, base_url: str, token: str, timeout: int = 30):
         self.base_url = base_url.rstrip("/")
         self.token = token
         self.timeout = timeout
