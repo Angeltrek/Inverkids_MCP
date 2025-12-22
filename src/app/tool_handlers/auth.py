@@ -1,6 +1,7 @@
 import os
 from src.auth.client import AuthClient
 
+
 def _get_backend_base_url():
     value = os.getenv("BACKEND_BASE_URL")
     if not value:
