@@ -1,6 +1,7 @@
 import os
 from src.backend.client import BackendClient
 
+
 def get_backend_client(token: str) -> BackendClient:
     base_url = os.getenv("BACKEND_BASE_URL")
     if not base_url:

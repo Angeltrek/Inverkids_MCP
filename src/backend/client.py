@@ -1,11 +1,6 @@
 import requests
 from typing import Any, Dict, Optional
 
-from src.config.constants.http_constants import (
-    CONTENT_TYPE_HEADER,
-    CONTENT_TYPE_JSON,
-    HTTP_STATUS_NO_CONTENT,
-)
 
 class BackendClient:
     def __init__(self, *, base_url: str, token: str, timeout: int = 30):
@@ -16,16 +11,16 @@ class BackendClient:
     def _headers(self) -> Dict[str, str]:
         return {
             "Authorization": self.token,
-            CONTENT_TYPE_HEADER: CONTENT_TYPE_JSON,
+            "Content-Type": "application/json",
         }
     
     def _safe_json(self, response: requests.Response) -> Any:
-        if response.status_code == HTTP_STATUS_NO_CONTENT:
+        if response.status_code == 204:
             return None
 
-        content_type = response.headers.get(CONTENT_TYPE_HEADER, "")
+        content_type = response.headers.get("Content-Type", "")
 
-        if CONTENT_TYPE_JSON not in content_type:
+        if "application/json" not in content_type:
             return None
 
         try:
