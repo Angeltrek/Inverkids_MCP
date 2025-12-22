@@ -14,6 +14,7 @@ GET_GROUP_USERS = "get_group_users"
 
 # ===== PROFILE =====
 GET_PROFILE = "get_profile"
+LOGIN = "login"
 
 # ===== STATISTICS =====
 GET_GRADES = "get_grades"

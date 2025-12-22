@@ -4,52 +4,51 @@ from src.config.constants.endpoint_constants import (
     COURSES_DATA,
     COURSES_NAMES,
 )
-from src.app.models.courses import (
-    GetCoursesInput,
-    GetCoursesByUserTypeInput,
-    GetCoursesNamesInput,
-    GetCoursesDataInput,
-)
 
 
-def get_courses_handler(args, *, backend_client: BackendClient):
-    dto = GetCoursesInput()
+def get_courses_handler(
+    *,
+    backend_client: BackendClient,
+):
     return backend_client.get(COURSES_LIST)
 
 
-def get_courses_by_user_type_handler(args, *, backend_client: BackendClient):
-    dto = GetCoursesByUserTypeInput(
-        user_type=args["user_type"]
-    )
+def get_courses_by_user_type_handler(
+    *,
+    user_type: str,
+    backend_client: BackendClient,
+):
     return backend_client.get(
         COURSES_LIST,
-        params={"user_type": dto.user_type},
+        params={"user_type": user_type},
     )
 
 
-def get_courses_names_handler(args, *, backend_client: BackendClient):
-    dto = GetCoursesNamesInput(
-        level=args["level"],
-        label=args["label"],
-    )
+def get_courses_names_handler(
+    *,
+    level: str,
+    label: str,
+    backend_client: BackendClient,
+):
     return backend_client.get(
         COURSES_NAMES,
         params={
-            "level": dto.level,
-            "label": dto.label,
+            "level": level,
+            "label": label,
         },
     )
 
 
-def get_courses_data_handler(args, *, backend_client: BackendClient):
-    dto = GetCoursesDataInput(
-        level=args["level"],
-        label=args["label"],
-    )
+def get_courses_data_handler(
+    *,
+    level: str,
+    label: str,
+    backend_client: BackendClient,
+):
     return backend_client.get(
         COURSES_DATA,
         params={
-            "level": dto.level,
-            "label": dto.label,
+            "level": level,
+            "label": label,
         },
     )

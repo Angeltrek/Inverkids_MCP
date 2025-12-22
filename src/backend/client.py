@@ -16,17 +16,16 @@ class BackendClient:
     def _headers(self) -> Dict[str, str]:
         return {
             "Authorization": self.token,
-            "Content-Type": "application/json",
-            "Accept": "application/json",
+            CONTENT_TYPE_HEADER: CONTENT_TYPE_JSON,
         }
     
     def _safe_json(self, response: requests.Response) -> Any:
         if response.status_code == HTTP_STATUS_NO_CONTENT:
             return None
 
-        content_type = response.headers.get("Content-Type", "")
+        content_type = response.headers.get(CONTENT_TYPE_HEADER, "")
 
-        if "application/json" not in content_type:
+        if CONTENT_TYPE_JSON not in content_type:
             return None
 
         try:
