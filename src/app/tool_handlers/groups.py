@@ -1,25 +1,13 @@
 import re
 from typing import Union, Iterable
-
+from src.mcp.decorators import with_backend_client, with_error_handling
+from src.app.validators import Validator
 from src.backend.client import BackendClient
 from src.config.constants.endpoint_constants import (
     GROUPS_LIST,
     GROUPS_BY_LEVEL,
     GROUP_USERS,
 )
-
-
-def normalize_level(level: Union[str, int]) -> str:
-    if isinstance(level, int):
-        return str(level)
-
-    level_str = str(level).strip().lower()
-
-    match = re.search(r"\d+", level_str)
-    if match:
-        return match.group()
-
-    return level_str
 
 
 def get_groups_handler(
@@ -39,6 +27,16 @@ def get_groups_by_level_handler(
     return backend_client.post(
         GROUPS_BY_LEVEL,
         json={"level": normalized_level},
+    )
+
+@with_error_handling
+@with_backend_client  
+def get_groups_by_level_handler(level, backend_client=None):
+    level = Validator.validate_level(level)
+    
+    return backend_client.post(
+        GROUPS_BY_LEVEL,
+        json={"level": level}
     )
 
 
