@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  inverkids-mcp-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: inverkids-mcp-dev
+    restart: unless-stopped
+    
+    environment:
+      - BACKEND_BASE_URL=${BACKEND_BASE_URL}
+      - HTTP_TIMEOUT=${HTTP_TIMEOUT:-30}
+      - MAX_RETRIES=${MAX_RETRIES:-3}
+      - AUTH_TIMEOUT=${AUTH_TIMEOUT:-10}
+      - MCP_NAME=${MCP_NAME:-inverkids-mcp}
+      - LOG_LEVEL=${LOG_LEVEL:-DEBUG}
+      - PYTHONUNBUFFERED=1
+    
+    env_file:
+      - .env
+    
+    ports:
+      - "8000:8000"
+    
+    volumes:
+      - ./src:/app/src:ro
+      - ./start_mcp.py:/app/start_mcp.py:ro
+      - ./logs:/app/logs
+    
+    command: python start_mcp.py
+    
+    networks:
+      - inverkids-network
+    
+    stdin_open: true
+    tty: true
+
+networks:
+  inverkids-network:
+    driver: bridge

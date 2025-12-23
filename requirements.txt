@@ -5,3 +5,4 @@ pytest
 mcp
 mcp[cli]
 uv
+fastapi
