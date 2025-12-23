@@ -1,8 +1,8 @@
-from functools import wraps
-from typing import Callable
 import logging
+from collections.abc import Callable
+from functools import wraps
 
-from src.utils.exceptions import ValidationError, InverKidsError
+from src.utils.exceptions import InverKidsError, ValidationError
 
 logger = logging.getLogger(__name__)
 

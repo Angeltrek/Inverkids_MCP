@@ -1,9 +1,9 @@
-from src.infrastructure.http.backend_client import BackendClient
-from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.controllers.users_controller import (
-    get_users,
     get_current_user,
+    get_users,
 )
+from src.infrastructure.decorators import with_backend_client, with_error_handling
+from src.infrastructure.http.backend_client import BackendClient
 
 
 @with_error_handling

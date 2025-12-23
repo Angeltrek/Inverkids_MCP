@@ -1,5 +1,5 @@
-from src.utils.exceptions import ValidationError
 from src.app.validators.common import validate_required
+from src.utils.exceptions import ValidationError
 
 
 def validate_password(password: str) -> None:

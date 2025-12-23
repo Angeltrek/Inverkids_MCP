@@ -1,9 +1,9 @@
 from src.mcp.app import mcp
 from src.mcp.handlers.courses_handlers import (
-    get_courses_handler,
     get_courses_by_user_type_handler,
-    get_courses_names_handler,
     get_courses_data_handler,
+    get_courses_handler,
+    get_courses_names_handler,
 )
 
 

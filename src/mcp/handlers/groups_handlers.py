@@ -1,11 +1,12 @@
-from typing import Iterable
-from src.infrastructure.decorators import with_backend_client, with_error_handling
-from src.infrastructure.http.backend_client import BackendClient
+from collections.abc import Iterable
+
 from src.controllers.groups_controller import (
+    get_group_users,
     get_groups,
     get_groups_by_level,
-    get_group_users,
 )
+from src.infrastructure.decorators import with_backend_client, with_error_handling
+from src.infrastructure.http.backend_client import BackendClient
 
 
 @with_error_handling

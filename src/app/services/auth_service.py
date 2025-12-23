@@ -1,7 +1,8 @@
 import logging
-from src.infrastructure.http.auth_client import AuthClient
+
 from src.app.validators import validate_enrollment_id, validate_password
 from src.infrastructure.config.settings.settings import load_settings
+from src.infrastructure.http.auth_client import AuthClient
 
 logger = logging.getLogger(__name__)
 settings = load_settings()

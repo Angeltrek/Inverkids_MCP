@@ -1,8 +1,8 @@
 from src.mcp.app import mcp
 from src.mcp.handlers.users_handlers import (
-    get_users_handler,
     get_current_user_handler,
-);
+    get_users_handler,
+)
 
 
 @mcp.tool(

@@ -1,8 +1,8 @@
 from src.mcp.app import mcp
 from src.mcp.handlers.groups_handlers import (
-    get_groups_handler,
-    get_groups_by_level_handler,
     get_group_users_handler,
+    get_groups_by_level_handler,
+    get_groups_handler,
 )
 
 

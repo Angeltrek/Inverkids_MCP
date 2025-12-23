@@ -1,8 +1,11 @@
 import os
-from src.models.settings.settings import Settings
+
 from src.models.settings.backend import BackendConfig
 from src.models.settings.mcp import MCPConfig
+from src.models.settings.settings import Settings
+
 from .env import load_environment
+
 
 def load_settings() -> Settings:
     """

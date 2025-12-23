@@ -1,8 +1,8 @@
-from src.infrastructure.http.backend_client import BackendClient
 from src.infrastructure.config.constants.endpoint_constants import (
-    MCP_USERS,
     MCP_PROFILE,
+    MCP_USERS,
 )
+from src.infrastructure.http.backend_client import BackendClient
 
 
 def get_users(backend_client: BackendClient):
