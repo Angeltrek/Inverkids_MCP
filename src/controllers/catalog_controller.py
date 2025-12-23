@@ -1,16 +1,14 @@
-from src.backend.client import BackendClient
-from src.config.constants.endpoint_constants import CATALOG_FULL
+from src.infrastructure.http.backend_client import BackendClient
+from src.infrastructure.config.constants.endpoint_constants import CATALOG_FULL
 
 
-def get_full_catalog_handler(
-    *,
+def get_full_catalog(
     level: str,
     white_label: str,
     user_lang: str,
     backend_client: BackendClient,
 ):
-
-    response = backend_client.get(
+    return backend_client.get(
         CATALOG_FULL,
         params={
             "level": level,
@@ -18,5 +16,3 @@ def get_full_catalog_handler(
             "userLang": user_lang,
         },
     )
-
-    return response

@@ -1,0 +1,35 @@
+from functools import wraps
+from typing import Callable
+import logging
+
+from src.infrastructure.http.backend_provider import get_backend_client
+from src.app.validators import validate_token
+from src.utils.exceptions import ValidationError
+
+logger = logging.getLogger(__name__)
+
+
+def with_backend_client(func: Callable) -> Callable:
+    """
+    Injects a BackendClient based on a validated token.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        token = kwargs.get("token")
+        if not token:
+            raise ValidationError("Token is required", field="token")
+
+        token = validate_token(token)
+
+        try:
+            client = get_backend_client(token)
+        except Exception as e:
+            logger.error("Failed to create backend client", exc_info=True)
+            raise
+
+        kwargs["backend_client"] = client
+        kwargs.pop("token", None)
+
+        return func(*args, **kwargs)
+
+    return wrapper

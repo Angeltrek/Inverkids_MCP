@@ -1,5 +1,5 @@
 import os
-from src.backend.client import BackendClient
+from src.infrastructure.http.backend_client import BackendClient
 
 
 def get_backend_client(token: str) -> BackendClient:

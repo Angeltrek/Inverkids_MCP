@@ -1,20 +1,16 @@
-from src.backend.client import BackendClient
-from src.config.constants.endpoint_constants import (
+from src.infrastructure.http.backend_client import BackendClient
+from src.infrastructure.config.constants.endpoint_constants import (
     COURSES_LIST,
     COURSES_DATA,
     COURSES_NAMES,
 )
 
 
-def get_courses_handler(
-    *,
-    backend_client: BackendClient,
-):
+def get_courses(backend_client: BackendClient):
     return backend_client.get(COURSES_LIST)
 
 
-def get_courses_by_user_type_handler(
-    *,
+def get_courses_by_user_type(
     user_type: str,
     backend_client: BackendClient,
 ):
@@ -24,12 +20,12 @@ def get_courses_by_user_type_handler(
     )
 
 
-def get_courses_names_handler(
-    *,
+def get_courses_names(
     level: str,
     label: str,
     backend_client: BackendClient,
 ):
+
     return backend_client.get(
         COURSES_NAMES,
         params={
@@ -39,8 +35,7 @@ def get_courses_names_handler(
     )
 
 
-def get_courses_data_handler(
-    *,
+def get_courses_data(
     level: str,
     label: str,
     backend_client: BackendClient,
