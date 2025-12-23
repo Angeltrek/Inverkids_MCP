@@ -1,5 +1,5 @@
 from src.mcp.app import mcp
-from src.app.tool_handlers.auth import login_handler
+from src.mcp.handlers.auth_handlers import login_handler
 
 
 @mcp.tool(

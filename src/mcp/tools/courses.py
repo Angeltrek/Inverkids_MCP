@@ -1,6 +1,5 @@
 from src.mcp.app import mcp
-from src.backend.context import get_backend_client
-from src.app.tool_handlers.courses import (
+from src.mcp.handlers.courses_handlers import (
     get_courses_handler,
     get_courses_by_user_type_handler,
     get_courses_names_handler,
@@ -10,8 +9,7 @@ from src.app.tool_handlers.courses import (
 
 @mcp.tool(name="get_courses", description="Retrieve the list of available courses.")
 def get_courses(token: str):
-    client = get_backend_client(token)
-    return get_courses_handler(backend_client=client)
+    return get_courses_handler(token=token)
 
 
 @mcp.tool(
@@ -19,10 +17,9 @@ def get_courses(token: str):
     description="Retrieve courses filtered by user type.",
 )
 def get_courses_by_user_type(user_type: str, token: str):
-    client = get_backend_client(token)
     return get_courses_by_user_type_handler(
         user_type=user_type,
-        backend_client=client,
+        token=token,
     )
 
 
@@ -31,11 +28,10 @@ def get_courses_by_user_type(user_type: str, token: str):
     description="Retrieve course names by level and white label.",
 )
 def get_courses_names(level: str, label: str, token: str):
-    client = get_backend_client(token)
     return get_courses_names_handler(
         level=level,
         label=label,
-        backend_client=client,
+        token=token,
     )
 
 
@@ -44,9 +40,8 @@ def get_courses_names(level: str, label: str, token: str):
     description="Retrieve full course data by level and white label.",
 )
 def get_courses_data(level: str, label: str, token: str):
-    client = get_backend_client(token)
     return get_courses_data_handler(
         level=level,
         label=label,
-        backend_client=client,
+        token=token,
     )

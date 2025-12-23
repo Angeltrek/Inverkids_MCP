@@ -1,6 +1,5 @@
 from src.mcp.app import mcp
-from src.backend.context import get_backend_client
-from src.app.tool_handlers.profile import get_profile_handler
+from src.mcp.handlers.profile_handlers import get_profile_handler
 
 
 @mcp.tool(
@@ -8,5 +7,4 @@ from src.app.tool_handlers.profile import get_profile_handler
     description="Retrieve the authenticated user's profile.",
 )
 def get_profile(token: str):
-    client = get_backend_client(token)
-    return get_profile_handler(backend_client=client)
+    return get_profile_handler(token=token)

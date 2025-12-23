@@ -1,9 +1,9 @@
 import requests
 from typing import Any, Dict
 
-from .session import Session
-from src.utils.errors import AuthenticationError
-from src.config.constants.endpoint_constants import LOGIN
+from src.models.auth.session import Session
+from src.utils.exceptions import AuthenticationError
+from src.infrastructure.config.constants.endpoint_constants import LOGIN
 
 
 class AuthClient:
