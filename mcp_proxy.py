@@ -1,8 +1,9 @@
-import requests
-import sys
 import json
+import sys
 import threading
 import time
+
+import requests
 
 STREAM_URL = "https://unlotted-fidelia-scratchiest.ngrok-free.dev/mcp/stream"
 SEND_URL = "https://unlotted-fidelia-scratchiest.ngrok-free.dev/mcp/send"

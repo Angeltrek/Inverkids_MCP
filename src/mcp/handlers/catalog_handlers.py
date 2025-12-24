@@ -1,9 +1,9 @@
 from src.controllers.catalog_controller import (
+    get_activities,
     get_full_catalog,
     get_modules,
-    get_topics,
-    get_activities,
     get_texts,
+    get_topics,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.infrastructure.http.backend_client import BackendClient

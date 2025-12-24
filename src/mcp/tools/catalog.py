@@ -1,10 +1,10 @@
 from src.mcp.app import mcp
 from src.mcp.handlers.catalog_handlers import (
+    get_activities_handler,
     get_full_catalog_handler,
     get_modules_handler,
-    get_topics_handler,
-    get_activities_handler,
     get_texts_handler,
+    get_topics_handler,
 )
 
 

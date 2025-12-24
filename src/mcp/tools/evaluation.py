@@ -1,7 +1,7 @@
 from src.mcp.app import mcp
 from src.mcp.handlers.evaluation_handlers import (
-    get_grades_handler,
     get_feedback_handler,
+    get_grades_handler,
 )
 
 

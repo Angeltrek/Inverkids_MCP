@@ -1,6 +1,6 @@
 from src.infrastructure.config.constants.endpoint_constants import (
-    MCP_GRADES,
     MCP_FEEDBACK,
+    MCP_GRADES,
 )
 from src.infrastructure.http.backend_client import BackendClient
 

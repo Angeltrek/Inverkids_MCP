@@ -1,6 +1,6 @@
 from src.controllers.evaluation_controller import (
-    get_grades,
     get_feedback,
+    get_grades,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.infrastructure.http.backend_client import BackendClient
