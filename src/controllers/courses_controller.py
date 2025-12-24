@@ -1,9 +1,9 @@
-from src.infrastructure.http.backend_client import BackendClient
 from src.infrastructure.config.constants.endpoint_constants import (
-    COURSES_LIST,
     COURSES_DATA,
+    COURSES_LIST,
     COURSES_NAMES,
 )
+from src.infrastructure.http.backend_client import BackendClient
 
 
 def get_courses(backend_client: BackendClient):

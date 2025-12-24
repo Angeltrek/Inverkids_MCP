@@ -1,9 +1,10 @@
-import requests
-from typing import Any, Dict
+from typing import Any
 
+import requests
+
+from src.infrastructure.config.constants.endpoint_constants import LOGIN
 from src.models.auth.session import Session
 from src.utils.exceptions import AuthenticationError
-from src.infrastructure.config.constants.endpoint_constants import LOGIN
 
 
 class AuthClient:
@@ -29,12 +30,12 @@ class AuthClient:
         if not response.ok:
             raise AuthenticationError(response.text)
 
-        data: Dict[str, Any] = response.json()
+        data: dict[str, Any] = response.json()
 
         token = self._extract_token(data)
         return Session(user=data, token=token)
 
-    def _extract_token(self, payload: Dict[str, Any]) -> str:
+    def _extract_token(self, payload: dict[str, Any]) -> str:
         """
         Adjust this once you confirm the serializer fields.
         Common names: auth_token, token, session_token

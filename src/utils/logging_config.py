@@ -1,15 +1,15 @@
+import json
 import logging
 import sys
-from typing import Any, Dict
-import json
 from datetime import datetime
+from typing import Any
 
 
 class StructuredFormatter(logging.Formatter):
     """JSON-structured logging formatter"""
     
     def format(self, record: logging.LogRecord) -> str:
-        log_data: Dict[str, Any] = {
+        log_data: dict[str, Any] = {
             "timestamp": datetime.utcnow().isoformat(),
             "level": record.levelname,
             "logger": record.name,

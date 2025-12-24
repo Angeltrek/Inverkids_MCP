@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Any
+from typing import Any
 
 
 class InverKidsError(Exception):
@@ -7,15 +7,15 @@ class InverKidsError(Exception):
     def __init__(
         self,
         message: str,
-        status_code: Optional[int] = None,
-        details: Optional[Dict[str, Any]] = None
+        status_code: int | None = None,
+        details: dict[str, Any] | None = None
     ):
         self.message = message
         self.status_code = status_code
         self.details = details or {}
         super().__init__(self.message)
     
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert exception to dictionary for API responses"""
         return {
             "error": self.__class__.__name__,
@@ -27,7 +27,7 @@ class InverKidsError(Exception):
 
 class ValidationError(InverKidsError):
     """Raised when input validation fails"""
-    def __init__(self, message: str, field: Optional[str] = None):
+    def __init__(self, message: str, field: str | None = None):
         super().__init__(message, status_code=400)
         if field:
             self.details["field"] = field
@@ -47,7 +47,7 @@ class AuthorizationError(InverKidsError):
 
 class ResourceNotFoundError(InverKidsError):
     """Raised when resource is not found"""
-    def __init__(self, resource: str, identifier: Optional[str] = None):
+    def __init__(self, resource: str, identifier: str | None = None):
         message = f"{resource} not found"
         if identifier:
             message += f": {identifier}"
@@ -71,7 +71,7 @@ class NetworkError(InverKidsError):
 
 class RateLimitError(InverKidsError):
     """Raised when rate limit is exceeded"""
-    def __init__(self, retry_after: Optional[int] = None):
+    def __init__(self, retry_after: int | None = None):
         message = "Rate limit exceeded"
         if retry_after:
             message += f". Retry after {retry_after} seconds"

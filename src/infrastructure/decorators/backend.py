@@ -1,9 +1,9 @@
-from functools import wraps
-from typing import Callable
 import logging
+from collections.abc import Callable
+from functools import wraps
 
-from src.infrastructure.http.backend_provider import get_backend_client
 from src.app.validators import validate_token
+from src.infrastructure.http.backend_provider import get_backend_client
 from src.utils.exceptions import ValidationError
 
 logger = logging.getLogger(__name__)
@@ -23,7 +23,7 @@ def with_backend_client(func: Callable) -> Callable:
 
         try:
             client = get_backend_client(token)
-        except Exception as e:
+        except Exception:
             logger.error("Failed to create backend client", exc_info=True)
             raise
 

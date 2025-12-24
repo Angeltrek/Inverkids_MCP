@@ -1,16 +1,17 @@
+import logging
+from typing import Any
+
 import requests
-from typing import Any, Dict, Optional
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-import logging
 
 from src.utils.exceptions import (
     AuthenticationError,
     AuthorizationError,
-    ResourceNotFoundError,
     BackendError,
     NetworkError,
     RateLimitError,
+    ResourceNotFoundError,
 )
 
 logger = logging.getLogger(__name__)
@@ -78,7 +79,7 @@ class BackendClient:
             }
         )
 
-    def _headers(self) -> Dict[str, str]:
+    def _headers(self) -> dict[str, str]:
         """Generate request headers with authentication"""
         return {
             "Authorization": self.token,
@@ -187,8 +188,8 @@ class BackendClient:
     def get(
         self,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
-        timeout: Optional[int] = None,
+        params: dict[str, Any] | None = None,
+        timeout: int | None = None,
     ) -> Any:
         """
         Perform GET request.
@@ -253,9 +254,9 @@ class BackendClient:
     def post(
         self,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
-        json: Optional[Dict[str, Any]] = None,
-        timeout: Optional[int] = None,
+        params: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
+        timeout: int | None = None,
     ) -> Any:
         """
         Perform POST request.

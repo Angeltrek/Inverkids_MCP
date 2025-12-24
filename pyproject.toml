@@ -1,0 +1,35 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+# Carpetas a analizar
+src = ["src"]
+
+# Reglas activadas (equilibradas)
+select = [
+  "E",    # pycodestyle errors
+  "F",    # pyflakes (imports rotos, variables no usadas)
+  "I",    # isort (imports)
+  "B",    # flake8-bugbear
+  "UP",   # pyupgrade
+]
+
+# Cosas que NO queremos ahora
+ignore = [
+  "E501", # line length (ya controlado)
+]
+
+exclude = [
+  ".venv",
+  "venv",
+  "__pycache__",
+]
+
+[tool.ruff.isort]
+known-first-party = ["src"]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "ruff>=0.14.10",
+]

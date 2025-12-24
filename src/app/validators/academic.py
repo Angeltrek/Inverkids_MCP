@@ -1,7 +1,8 @@
 import re
-from typing import List, Any
-from src.utils.exceptions import ValidationError
+from typing import Any
+
 from src.app.validators.common import validate_required
+from src.utils.exceptions import ValidationError
 
 
 def validate_level(level: Any) -> str:
@@ -27,7 +28,7 @@ def validate_level(level: Any) -> str:
     return str(level_num)
 
 
-def validate_group_ids(group_ids: List[str]) -> List[str]:
+def validate_group_ids(group_ids: list[str]) -> list[str]:
     if not group_ids:
         raise ValidationError(
             "At least one group ID is required",

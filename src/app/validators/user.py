@@ -1,5 +1,5 @@
-from src.utils.exceptions import ValidationError
 from src.app.validators.common import validate_required
+from src.utils.exceptions import ValidationError
 
 
 def validate_enrollment_id(enrollment_id: str) -> str:
