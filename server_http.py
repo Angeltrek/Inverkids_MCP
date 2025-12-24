@@ -21,7 +21,6 @@ async def start_mcp():
         stdin=asyncio.subprocess.PIPE,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
-        # Aumentar límite del buffer
         limit=BUFFER_LIMIT,
     )
 
