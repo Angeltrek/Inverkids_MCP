@@ -1,13 +1,11 @@
-# Dockerfile para Inverkids MCP Server
+# Dockerfile para Inverkids MCP HTTP Server
 FROM python:3.11-slim
 
-# Configurar variables de entorno
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# Crear directorio de trabajo
 WORKDIR /app
 
 # Instalar dependencias del sistema
@@ -24,16 +22,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el código fuente
 COPY src/ ./src/
 COPY start_mcp.py ./
+COPY server_http.py ./
 
 # Crear usuario no-root para seguridad
 RUN useradd -m -u 1000 inverkids && \
     chown -R inverkids:inverkids /app
 
-# Cambiar a usuario no-root
 USER inverkids
 
-# Exponer puerto si es necesario (ajustar según tu configuración)
+# Exponer puerto HTTP
 EXPOSE 8000
 
-# Comando por defecto
-CMD ["python", "-u", "start_mcp.py"]
+# Comando para iniciar el servidor HTTP
+CMD ["uvicorn", "server_http:app", "--host", "0.0.0.0", "--port", "8000"]

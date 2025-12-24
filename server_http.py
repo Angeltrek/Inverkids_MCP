@@ -62,6 +62,13 @@ async def send(payload: dict):
         return {"status": "sent"}
     except Exception as e:
         return {"status": "error", "message": str(e)}
+    
+@app.get("/health")
+async def health():
+    """Health check endpoint"""
+    if mcp_process and mcp_process.returncode is None:
+        return {"status": "healthy", "mcp_running": True}
+    return {"status": "unhealthy", "mcp_running": False}
 
 @app.on_event("shutdown")
 async def shutdown():
