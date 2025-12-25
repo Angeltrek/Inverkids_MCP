@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.ruff_cache/
 .venv/
 venv/
 
@@ -18,3 +19,6 @@ main.py
 
 # Test artifacts
 .pytest_cache/
+
+# Executables
+*.exe
