@@ -18,6 +18,8 @@ def get_grades_handler(
     topic_id: str | None = None,
     activity_id: str | None = None,
     grade_type: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_grades(
         backend_client=backend_client,
@@ -28,6 +30,8 @@ def get_grades_handler(
         topic_id=topic_id,
         activity_id=activity_id,
         grade_type=grade_type,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -42,6 +46,8 @@ def get_feedback_handler(
     module_id: str | None = None,
     topic_id: str | None = None,
     rating: int | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_feedback(
         backend_client=backend_client,
@@ -51,4 +57,6 @@ def get_feedback_handler(
         module_id=module_id,
         topic_id=topic_id,
         rating=rating,
+        limit=limit,
+        offset=offset,
     )

@@ -34,12 +34,16 @@ def get_modules_handler(
     level: str | None = None,
     white_label: str | None = None,
     module_id: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_modules(
         backend_client=backend_client,
         level=level,
         white_label=white_label,
         module_id=module_id,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -51,12 +55,16 @@ def get_topics_handler(
     module_id: str | None = None,
     level: str | None = None,
     topic_id: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_topics(
         backend_client=backend_client,
         module_id=module_id,
         level=level,
         topic_id=topic_id,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -71,6 +79,8 @@ def get_activities_handler(
     activity_id: str | None = None,
     activity_type: str | None = None,
     include_content: bool = False,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_activities(
         backend_client=backend_client,
@@ -80,6 +90,8 @@ def get_activities_handler(
         activity_id=activity_id,
         activity_type=activity_type,
         include_content=include_content,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -93,6 +105,8 @@ def get_texts_handler(
     level: str | None = None,
     text_id: str | None = None,
     include_content: bool = False,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_texts(
         backend_client=backend_client,
@@ -101,4 +115,6 @@ def get_texts_handler(
         level=level,
         text_id=text_id,
         include_content=include_content,
+        limit=limit,
+        offset=offset,
     )

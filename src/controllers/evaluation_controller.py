@@ -15,6 +15,8 @@ def get_grades(
     topic_id: str | None = None,
     activity_id: str | None = None,
     grade_type: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return backend_client.get(
         MCP_GRADES,
@@ -26,6 +28,8 @@ def get_grades(
             "topic_id": topic_id,
             "activity_id": activity_id,
             "grade_type": grade_type,
+            "limit": limit,
+            "offset": offset,
         },
     )
 
@@ -39,6 +43,8 @@ def get_feedback(
     module_id: str | None = None,
     topic_id: str | None = None,
     rating: int | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return backend_client.get(
         MCP_FEEDBACK,
@@ -49,5 +55,7 @@ def get_feedback(
             "module_id": module_id,
             "topic_id": topic_id,
             "rating": rating,
+            "limit": limit,
+            "offset": offset,
         },
     )
