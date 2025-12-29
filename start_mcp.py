@@ -16,7 +16,7 @@ import src.mcp.tools.evaluation
 
 
 def main():
-    mcp.run()
+    mcp.run(transport="streamable-http")
 
 
 if __name__ == "__main__":
