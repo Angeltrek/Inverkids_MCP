@@ -7,8 +7,13 @@ from src.mcp.handlers.evaluation_handlers import (
 
 @mcp.tool(
     name="get_grades",
-    description="Retrieve student grades. Access is automatically restricted based on user role.",
+    description=(
+        "List student grades filtered by academic context. "
+        "Access is role-restricted. "
+        "Paginated (default offset: 10, max limit: 50)."
+    ),
 )
+
 def get_grades(
     token: str,
     level: str | None = None,
@@ -18,6 +23,8 @@ def get_grades(
     topic_id: str | None = None,
     activity_id: str | None = None,
     grade_type: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_grades_handler(
         token=token,
@@ -28,13 +35,20 @@ def get_grades(
         topic_id=topic_id,
         activity_id=activity_id,
         grade_type=grade_type,
+        limit=limit,
+        offset=offset,
     )
 
 
 @mcp.tool(
     name="get_feedback",
-    description="Retrieve student feedback and ratings. Access is restricted by user role.",
+    description=(
+        "List student feedback and ratings filtered by academic context. "
+        "Access is role-restricted. "
+        "Paginated (default offset: 10, max limit: 50)."
+    ),
 )
+
 def get_feedback(
     token: str,
     level: str | None = None,
@@ -43,6 +57,8 @@ def get_feedback(
     module_id: str | None = None,
     topic_id: str | None = None,
     rating: int | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_feedback_handler(
         token=token,
@@ -52,4 +68,6 @@ def get_feedback(
         module_id=module_id,
         topic_id=topic_id,
         rating=rating,
+        limit=limit,
+        offset=offset,
     )

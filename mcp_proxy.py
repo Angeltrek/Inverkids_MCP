@@ -7,7 +7,6 @@ import time
 STREAM_URL = "https://unlotted-fidelia-scratchiest.ngrok-free.dev/mcp/stream"
 SEND_URL = "https://unlotted-fidelia-scratchiest.ngrok-free.dev/mcp/send"
 
-TIMEOUT = 300
 CHUNK_SIZE = 8192
 
 
@@ -17,7 +16,7 @@ def stream():
         with requests.get(
             STREAM_URL, 
             stream=True,
-            timeout=TIMEOUT,
+            timeout=None,
             headers={
                 "Accept": "text/event-stream",
                 "Cache-Control": "no-cache",
@@ -59,7 +58,7 @@ def send():
                 response = requests.post(
                     SEND_URL,
                     json=payload,
-                    timeout=30,
+                    timeout=300,
                 )
                 
                 if response.status_code != 200:

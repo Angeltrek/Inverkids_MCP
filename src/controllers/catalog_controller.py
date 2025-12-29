@@ -30,6 +30,8 @@ def get_modules(
     level: str | None = None,
     white_label: str | None = None,
     module_id: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return backend_client.get(
         MCP_MODULES,
@@ -37,6 +39,8 @@ def get_modules(
             "level": level,
             "white_label": white_label,
             "module_id": module_id,
+            "limit": limit,
+            "offset": offset,
         },
     )
 
@@ -47,6 +51,8 @@ def get_topics(
     module_id: str | None = None,
     level: str | None = None,
     topic_id: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return backend_client.get(
         MCP_TOPICS,
@@ -54,6 +60,8 @@ def get_topics(
             "module_id": module_id,
             "level": level,
             "topic_id": topic_id,
+            "limit": limit,
+            "offset": offset,
         },
     )
 
@@ -67,6 +75,8 @@ def get_activities(
     activity_id: str | None = None,
     activity_type: str | None = None,
     include_content: bool = False,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return backend_client.get(
         MCP_ACTIVITIES,
@@ -77,6 +87,8 @@ def get_activities(
             "activity_id": activity_id,
             "activity_type": activity_type,
             "include_content": str(include_content).lower(),
+            "limit": limit,
+            "offset": offset,
         },
     )
 
@@ -89,6 +101,8 @@ def get_texts(
     level: str | None = None,
     text_id: str | None = None,
     include_content: bool = False,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return backend_client.get(
         MCP_TEXTS,
@@ -98,5 +112,7 @@ def get_texts(
             "level": level,
             "text_id": text_id,
             "include_content": str(include_content).lower(),
+            "limit": limit,
+            "offset": offset,
         },
     )

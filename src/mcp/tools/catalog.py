@@ -28,44 +28,65 @@ def get_full_catalog(
 
 @mcp.tool(
     name="get_modules",
-    description="Retrieve learning modules filtered by level, white label, or module id.",
+    description=(
+        "List modules filtered by level, white label, or module ID. "
+        "Paginated (default offset: 5, max limit: 10)."
+    ),
 )
+
 def get_modules(
     token: str,
     level: str | None = None,
     white_label: str | None = None,
     module_id: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_modules_handler(
         token=token,
         level=level,
         white_label=white_label,
         module_id=module_id,
+        limit=limit,
+        offset=offset,
     )
 
 
 @mcp.tool(
     name="get_topics",
-    description="Retrieve topics filtered by module, level, or topic id.",
+    description=(
+        "List topics filtered by module, level, or topic ID. "
+        "Paginated (default offset: 5, max limit: 10)."
+    ),
 )
+
 def get_topics(
     token: str,
     module_id: str | None = None,
     level: str | None = None,
     topic_id: str | None = None,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_topics_handler(
         token=token,
         module_id=module_id,
         level=level,
         topic_id=topic_id,
+        limit=limit,
+        offset=offset,
     )
 
 
 @mcp.tool(
     name="get_activities",
-    description="Retrieve activities filtered by topic, module, level, or activity type. Use include_content only when necessary.",
+    description=(
+        "List activities filtered by topic, module, level, or type. "
+        "Use include_content only if needed. "
+        "Paginated (default offset: 5, max limit: 10)."
+    ),
 )
+
 def get_activities(
     token: str,
     topic_id: str | None = None,
@@ -74,6 +95,8 @@ def get_activities(
     activity_id: str | None = None,
     activity_type: str | None = None,
     include_content: bool = False,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_activities_handler(
         token=token,
@@ -83,13 +106,19 @@ def get_activities(
         activity_id=activity_id,
         activity_type=activity_type,
         include_content=include_content,
+        limit=limit,
+        offset=offset,
     )
 
 
 @mcp.tool(
     name="get_texts",
-    description="Retrieve learning texts. Content is excluded by default to save tokens.",
+    description=(
+        "List learning texts. Content excluded by default. "
+        "Paginated (default offset: 5, max limit: 10)."
+    ),
 )
+
 def get_texts(
     token: str,
     topic_id: str | None = None,
@@ -97,6 +126,8 @@ def get_texts(
     level: str | None = None,
     text_id: str | None = None,
     include_content: bool = False,
+    limit: int | None = None,
+    offset: int | None = None,
 ):
     return get_texts_handler(
         token=token,
@@ -105,4 +136,6 @@ def get_texts(
         level=level,
         text_id=text_id,
         include_content=include_content,
+        limit=limit,
+        offset=offset,
     )
