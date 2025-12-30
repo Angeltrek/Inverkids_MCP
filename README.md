@@ -1,4 +1,4 @@
-# Inverkids MCP HTTP Server
+# Inverkids MCP Server
 
 A Model Context Protocol (MCP) server that provides access to the Inverkids educational platform API. This server enables AI assistants to interact with educational content, user management, courses, and student evaluation data.
 
@@ -10,8 +10,7 @@ A Model Context Protocol (MCP) server that provides access to the Inverkids educ
 - **User Management**: Access user profiles and group information
 - **Evaluation System**: Access to grades and student feedback
 - **School Management**: Retrieve school information based on user permissions
-- **HTTP Proxy**: Expose MCP server via HTTP for remote access
-- **Docker Support**: Containerized deployment ready
+- **MCP Protocol**: Native Model Context Protocol implementation using FastMCP
 
 ## Architecture
 
@@ -21,34 +20,26 @@ A Model Context Protocol (MCP) server that provides access to the Inverkids educ
 │   (Claude)      │
 └────────┬────────┘
          │
-         │ MCP Protocol
+         │ MCP Protocol (stdio)
          ▼
-┌─────────────────┐      ┌──────────────────┐
-│  MCP Proxy      │─────▶│  HTTP Server     │
-│  (mcp_proxy.py) │      │  (server_http.py)│
-└─────────────────┘      └────────┬─────────┘
-                                  │
-                                  │ JSON-RPC
-                                  ▼
-                         ┌──────────────────┐
-                         │   MCP Server     │
-                         │   (FastMCP)      │
-                         └────────┬─────────┘
-                                  │
-                                  │ HTTP/REST
-                                  ▼
-                         ┌──────────────────┐
-                         │  Inverkids API   │
-                         │   (Backend)      │
-                         └──────────────────┘
+┌─────────────────┐
+│   MCP Server    │
+│   (FastMCP)     │
+└────────┬────────┘
+         │
+         │ HTTP/REST
+         ▼
+┌─────────────────┐
+│  Inverkids API  │
+│   (Backend)     │
+└─────────────────┘
 ```
 
 ## Prerequisites
 
 - Python 3.11+
-- Docker (optional, for containerized deployment)
 - Access to Inverkids Backend API
-- ngrok or similar tunneling service (for remote access)
+- Claude Desktop app or MCP-compatible client
 
 ## Installation
 
@@ -89,40 +80,35 @@ MAX_RETRIES=3
 AUTH_TIMEOUT=10
 MCP_NAME=inverkids-mcp
 LOG_LEVEL=INFO
-```
 
-### Docker Setup
-
-1. Build the Docker image:
-
-```bash
-docker build -t inverkids-mcp .
-```
-
-2. Run the container:
-
-```bash
-docker run -p 8000:8000 \
-  -e BACKEND_BASE_URL=https://your-backend-api.com \
-  inverkids-mcp
+# Optional: Default credentials for service identity
+MCP_DEFAULT_ENROLLMENT_ID=your_enrollment_id
+MCP_DEFAULT_PASSWORD=your_password
 ```
 
 ## Usage
 
-### Starting the HTTP Server
+### Claude Desktop Configuration
 
-The HTTP server exposes the MCP protocol over HTTP for remote access:
+Add the server to your Claude Desktop configuration file:
 
-```bash
-uvicorn server_http:app --host 0.0.0.0 --port 8000
-```
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-### Using the MCP Proxy Client
-
-The proxy client connects to the HTTP server and communicates via MCP protocol:
-
-```bash
-python mcp_proxy.py
+```json
+{
+  "mcpServers": {
+    "inverkids": {
+      "command": "python",
+      "args": ["/path/to/inverkids-mcp-server/start_mcp.py"],
+      "env": {
+        "BACKEND_BASE_URL": "https://your-backend-api.com",
+        "MCP_DEFAULT_ENROLLMENT_ID": "your_enrollment_id",
+        "MCP_DEFAULT_PASSWORD": "your_password"
+      }
+    }
+  }
+}
 ```
 
 ### Available MCP Tools
@@ -137,6 +123,8 @@ python mcp_proxy.py
   "password": "password123"
 }
 ```
+
+Returns authentication token for subsequent requests. If default credentials are configured, can be called without parameters.
 
 #### User Management
 
@@ -169,44 +157,52 @@ python mcp_proxy.py
 }
 ```
 
-**`get_modules`** - Get learning modules
+**`get_modules`** - Get learning modules (paginated)
 
 ```json
 {
   "token": "auth_token_here",
   "level": "5",
   "white_label": "inverkids",
-  "module_id": "optional"
+  "module_id": "optional",
+  "limit": 10,
+  "offset": 0
 }
 ```
 
-**`get_topics`** - Get topics
+**`get_topics`** - Get topics (paginated)
 
 ```json
 {
   "token": "auth_token_here",
   "module_id": "module_123",
-  "level": "5"
+  "level": "5",
+  "limit": 10,
+  "offset": 0
 }
 ```
 
-**`get_activities`** - Get activities
+**`get_activities`** - Get activities (paginated)
 
 ```json
 {
   "token": "auth_token_here",
   "topic_id": "topic_123",
-  "include_content": false
+  "include_content": false,
+  "limit": 10,
+  "offset": 0
 }
 ```
 
-**`get_texts`** - Get learning texts
+**`get_texts`** - Get learning texts (paginated)
 
 ```json
 {
   "token": "auth_token_here",
   "topic_id": "topic_123",
-  "include_content": false
+  "include_content": false,
+  "limit": 10,
+  "offset": 0
 }
 ```
 
@@ -279,24 +275,28 @@ python mcp_proxy.py
 
 #### Evaluation
 
-**`get_grades`** - Get student grades
+**`get_grades`** - Get student grades (paginated)
 
 ```json
 {
   "token": "auth_token_here",
   "level": "5",
   "group_id": "group_123",
-  "student_id": "student_456"
+  "student_id": "student_456",
+  "limit": 50,
+  "offset": 0
 }
 ```
 
-**`get_feedback`** - Get student feedback
+**`get_feedback`** - Get student feedback (paginated)
 
 ```json
 {
   "token": "auth_token_here",
   "level": "5",
-  "student_id": "student_456"
+  "student_id": "student_456",
+  "limit": 50,
+  "offset": 0
 }
 ```
 
@@ -326,13 +326,11 @@ inverkids-mcp-server/
 │   │   └── http/           # HTTP clients
 │   ├── mcp/
 │   │   ├── handlers/       # MCP tool handlers
-│   │   └── tools/          # MCP tool definitions
+│   │   ├── tools/          # MCP tool definitions
+│   │   └── app.py          # FastMCP server instance
 │   ├── models/             # Data models
 │   └── utils/              # Utilities and exceptions
-├── Dockerfile              # Docker configuration
-├── server_http.py          # HTTP server
-├── mcp_proxy.py           # MCP proxy client
-├── start_mcp.py           # MCP server entry point
+├── start_mcp.py            # MCP server entry point
 └── requirements.txt        # Python dependencies
 ```
 
@@ -348,7 +346,7 @@ The server includes comprehensive error handling with specific exception types:
 - **BackendError** (500): Backend service error
 - **NetworkError** (503): Network communication failure
 
-All errors return structured JSON responses:
+All errors return structured responses:
 
 ```json
 {
@@ -369,6 +367,7 @@ All errors return structured JSON responses:
 - Passwords are validated for minimum length and format
 - HTTP client includes automatic retry with exponential backoff
 - Connection pooling for efficient resource usage
+- Environment-based credential configuration
 
 ## Logging
 
@@ -396,24 +395,15 @@ Example log entry:
 }
 ```
 
-## Health Check
+## Development
 
-The HTTP server provides a health check endpoint:
+### Running the Server Standalone
+
+For testing without Claude Desktop:
 
 ```bash
-curl http://localhost:8000/health
+python start_mcp.py
 ```
-
-Response:
-
-```json
-{
-  "status": "healthy",
-  "mcp_running": true
-}
-```
-
-## Development
 
 ### Running Tests
 
@@ -434,34 +424,6 @@ ruff check src/
 mypy src/
 ```
 
-## Deployment
-
-### Using ngrok for Remote Access
-
-1. Start the HTTP server:
-
-```bash
-uvicorn server_http:app --host 0.0.0.0 --port 8000
-```
-
-2. Create ngrok tunnel:
-
-```bash
-ngrok http 8000
-```
-
-3. Update `STREAM_URL` and `SEND_URL` in `mcp_proxy.py` with your ngrok URL
-
-### Production Considerations
-
-- Use environment variables for sensitive configuration
-- Enable HTTPS/TLS for production deployments
-- Implement rate limiting at the HTTP layer
-- Monitor health check endpoint
-- Set up log aggregation (e.g., ELK stack)
-- Use a process manager (e.g., supervisord, systemd)
-- Configure proper firewall rules
-
 ## Troubleshooting
 
 ### Connection Errors
@@ -469,15 +431,15 @@ ngrok http 8000
 If you see connection errors, verify:
 
 - Backend API URL is correct and accessible
-- ngrok tunnel is active (for remote access)
-- Firewall allows outbound connections
 - Environment variables are set correctly
+- Firewall allows outbound connections
 
 ### Authentication Errors
 
 - Verify enrollment ID and password are correct
 - Check token is being passed to authenticated endpoints
 - Ensure token hasn't expired
+- Verify default credentials in configuration (if using service identity)
 
 ### Timeout Issues
 
@@ -487,6 +449,13 @@ Increase timeout values in `.env`:
 HTTP_TIMEOUT=60
 AUTH_TIMEOUT=20
 ```
+
+### Claude Desktop Integration Issues
+
+- Check Claude Desktop logs for startup errors
+- Verify Python path in configuration is correct
+- Ensure all dependencies are installed in the correct environment
+- Restart Claude Desktop after configuration changes
 
 ## Contributing
 
@@ -513,8 +482,8 @@ For issues and questions:
 ### Version 1.0.0
 
 - Initial release
-- MCP server implementation
-- HTTP proxy support
-- Docker containerization
+- MCP server implementation using FastMCP
+- Complete tool suite for Inverkids API
 - Comprehensive error handling
 - Structured logging
+- Service identity support
