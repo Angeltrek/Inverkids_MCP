@@ -6,4 +6,3 @@ mcp
 mcp[cli]
 uv
 fastapi
-uvicorn[standard]
