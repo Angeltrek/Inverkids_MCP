@@ -1,6 +1,6 @@
-from src.controllers.users_controller import (
-    get_users_list,
-    get_user_detail,
+from src.controllers.feedback_controller import (
+    get_feedback_list,
+    get_feedback_detail,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.infrastructure.http.backend_client import BackendClient
@@ -8,14 +8,18 @@ from src.infrastructure.http.backend_client import BackendClient
 
 @with_error_handling
 @with_backend_client
-def get_users_list_handler(
+def get_feedback_list_handler(
     *,
     backend_client: BackendClient,
+    module_id: str | None = None,
+    topic_id: str | None = None,
     limit: int = 20,
     offset: int = 0,
 ):
-    return get_users_list(
+    return get_feedback_list(
         backend_client=backend_client,
+        module_id=module_id,
+        topic_id=topic_id,
         limit=limit,
         offset=offset,
     )
@@ -23,12 +27,12 @@ def get_users_list_handler(
 
 @with_error_handling
 @with_backend_client
-def get_user_detail_handler(
+def get_feedback_detail_handler(
     *,
     backend_client: BackendClient,
-    user_id: str,
+    feedback_id: str,
 ):
-    return get_user_detail(
+    return get_feedback_detail(
         backend_client=backend_client,
-        user_id=user_id,
+        feedback_id=feedback_id,
     )
