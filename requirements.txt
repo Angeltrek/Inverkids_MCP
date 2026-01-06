@@ -2,5 +2,6 @@ openai
 python-dotenv
 requests
 pytest
+fastmcp
 uv
 fastapi
