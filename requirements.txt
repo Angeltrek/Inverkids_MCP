@@ -4,6 +4,6 @@ requests
 pytest
 # mcp
 # mcp[cli] 
-# git+https://github.com/modelcontextprotocol/python-sdk.git
+git+https://github.com/modelcontextprotocol/python-sdk.git
 uv
 fastapi
