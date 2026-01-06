@@ -15,50 +15,66 @@ from src.mcp.handlers.topics_handlers import (
 
 @mcp.tool(
     name="get_topics",
-    description="List topics, optionally filtered by module ID.",
+    description="List topics, optionally filtered by module ID. Supports pagination.",
 )
-def get_topics(module_id: str | None = None):
-    return get_topics_handler(module_id=module_id)
+def get_topics(
+    module_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_topics_handler(
+        module_id=module_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_topics_by_level",
-    description="List topics by academic level.",
+    description="List topics by academic level. Supports pagination.",
 )
-def get_topics_by_level(level: str):
-    return get_topics_by_level_handler(level=level)
+def get_topics_by_level(
+    level: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_topics_by_level_handler(
+        level=level,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_topics_with_quiz",
-    description="List topics that include quizzes.",
+    description="List topics that include quizzes. Supports pagination.",
 )
-def get_topics_with_quiz():
-    return get_topics_with_quiz_handler()
+def get_topics_with_quiz(limit: int = 20, offset: int = 0):
+    return get_topics_with_quiz_handler(limit=limit, offset=offset)
 
 
 @mcp.tool(
     name="get_topics_with_eval",
-    description="List topics that include evaluations.",
+    description="List topics that include evaluations. Supports pagination.",
 )
-def get_topics_with_eval():
-    return get_topics_with_eval_handler()
+def get_topics_with_eval(limit: int = 20, offset: int = 0):
+    return get_topics_with_eval_handler(limit=limit, offset=offset)
 
 
 @mcp.tool(
     name="get_topics_with_diag",
-    description="List topics that include diagnostics.",
+    description="List topics that include diagnostics. Supports pagination.",
 )
-def get_topics_with_diag():
-    return get_topics_with_diag_handler()
+def get_topics_with_diag(limit: int = 20, offset: int = 0):
+    return get_topics_with_diag_handler(limit=limit, offset=offset)
 
 
 @mcp.tool(
     name="get_topics_without_assessment",
-    description="List topics without quiz, eval, or diagnostic.",
+    description="List topics without quiz, eval, or diagnostic. Supports pagination.",
 )
-def get_topics_without_assessment():
-    return get_topics_without_assessment_handler()
+def get_topics_without_assessment(limit: int = 20, offset: int = 0):
+    return get_topics_without_assessment_handler(limit=limit, offset=offset)
 
 
 @mcp.tool(
@@ -71,20 +87,35 @@ def get_last_topic_by_module(module_id: str):
 
 @mcp.tool(
     name="search_topics_by_name",
-    description="Search topics by name (ILIKE, max 20 results).",
+    description="Search topics by name (ILIKE). Supports pagination.",
 )
-def search_topics_by_name(query: str):
-    return search_topics_by_name_handler(query=query)
+def search_topics_by_name(
+    query: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return search_topics_by_name_handler(
+        query=query,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="search_topics_by_name_in_module",
-    description="Search topics by name within a specific module.",
+    description="Search topics by name within a specific module. Supports pagination.",
 )
-def search_topics_by_name_in_module(module_id: str, query: str):
+def search_topics_by_name_in_module(
+    module_id: str,
+    query: str,
+    limit: int = 20,
+    offset: int = 0,
+):
     return search_topics_by_name_in_module_handler(
         module_id=module_id,
         query=query,
+        limit=limit,
+        offset=offset,
     )
 
 
