@@ -13,11 +13,15 @@ def get_feedback_list_handler(
     backend_client: BackendClient,
     module_id: str | None = None,
     topic_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_feedback_list(
         backend_client=backend_client,
         module_id=module_id,
         topic_id=topic_id,
+        limit=limit,
+        offset=offset,
     )
 
 

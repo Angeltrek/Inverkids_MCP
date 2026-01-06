@@ -7,18 +7,19 @@ from src.mcp.handlers.feedback_handlers import (
 
 @mcp.tool(
     name="get_feedback_list",
-    description=(
-        "List feedback entries, optionally filtered by module or topic. "
-        "Ordered by most recent."
-    ),
+    description="List feedback entries filtered by module and/or topic. Supports pagination.",
 )
 def get_feedback_list(
     module_id: str | None = None,
     topic_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_feedback_list_handler(
         module_id=module_id,
         topic_id=topic_id,
+        limit=limit,
+        offset=offset,
     )
 
 

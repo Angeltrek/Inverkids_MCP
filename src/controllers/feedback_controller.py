@@ -10,12 +10,16 @@ def get_feedback_list(
     backend_client: BackendClient,
     module_id: str | None = None,
     topic_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_FEEDBACK_LIST,
         params={
             "module_id": module_id,
             "topic_id": topic_id,
+            "limit": limit,
+            "offset": offset,
         },
     )
 
