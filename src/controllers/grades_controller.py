@@ -15,10 +15,16 @@ def get_grades_by_level(
     *,
     backend_client: BackendClient,
     level: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_GRADES_BY_LEVEL,
-        params={"level": level},
+        params={
+            "level": level,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -26,10 +32,16 @@ def get_grades_by_group(
     *,
     backend_client: BackendClient,
     group_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_GRADES_BY_GROUP,
-        params={"group_id": group_id},
+        params={
+            "group_id": group_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -37,10 +49,16 @@ def get_grades_by_student(
     *,
     backend_client: BackendClient,
     student_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_GRADES_BY_STUDENT,
-        params={"student_id": student_id},
+        params={
+            "student_id": student_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -48,10 +66,16 @@ def get_grades_by_module(
     *,
     backend_client: BackendClient,
     module_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_GRADES_BY_MODULE,
-        params={"module_id": module_id},
+        params={
+            "module_id": module_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -59,10 +83,16 @@ def get_grades_by_topic(
     *,
     backend_client: BackendClient,
     topic_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_GRADES_BY_TOPIC,
-        params={"topic_id": topic_id},
+        params={
+            "topic_id": topic_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -70,10 +100,16 @@ def get_grades_by_activity(
     *,
     backend_client: BackendClient,
     activity_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_GRADES_BY_ACTIVITY,
-        params={"activity_id": activity_id},
+        params={
+            "activity_id": activity_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 

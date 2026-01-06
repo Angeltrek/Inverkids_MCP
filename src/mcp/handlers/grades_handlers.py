@@ -18,10 +18,14 @@ def get_grades_by_level_handler(
     *,
     backend_client: BackendClient,
     level: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_grades_by_level(
         backend_client=backend_client,
         level=level,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -31,10 +35,14 @@ def get_grades_by_group_handler(
     *,
     backend_client: BackendClient,
     group_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_grades_by_group(
         backend_client=backend_client,
         group_id=group_id,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -44,10 +52,14 @@ def get_grades_by_student_handler(
     *,
     backend_client: BackendClient,
     student_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_grades_by_student(
         backend_client=backend_client,
         student_id=student_id,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -57,10 +69,14 @@ def get_grades_by_module_handler(
     *,
     backend_client: BackendClient,
     module_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_grades_by_module(
         backend_client=backend_client,
         module_id=module_id,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -70,10 +86,14 @@ def get_grades_by_topic_handler(
     *,
     backend_client: BackendClient,
     topic_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_grades_by_topic(
         backend_client=backend_client,
         topic_id=topic_id,
+        limit=limit,
+        offset=offset,
     )
 
 
@@ -83,10 +103,14 @@ def get_grades_by_activity_handler(
     *,
     backend_client: BackendClient,
     activity_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_grades_by_activity(
         backend_client=backend_client,
         activity_id=activity_id,
+        limit=limit,
+        offset=offset,
     )
 
 
