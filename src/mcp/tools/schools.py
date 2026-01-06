@@ -7,10 +7,16 @@ from src.mcp.handlers.schools_handlers import (
 
 @mcp.tool(
     name="get_schools_list",
-    description="List all schools available to the requester.",
+    description="List all schools available to the requester. Supports pagination.",
 )
-def get_schools_list():
-    return get_schools_list_handler()
+def get_schools_list(
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_schools_list_handler(
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(

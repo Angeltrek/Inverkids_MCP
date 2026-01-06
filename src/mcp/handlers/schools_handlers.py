@@ -11,8 +11,14 @@ from src.infrastructure.http.backend_client import BackendClient
 def get_schools_list_handler(
     *,
     backend_client: BackendClient,
+    limit: int = 20,
+    offset: int = 0,
 ):
-    return get_schools_list(backend_client=backend_client)
+    return get_schools_list(
+        backend_client=backend_client,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @with_error_handling
