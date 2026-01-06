@@ -1,6 +1,6 @@
 from src.controllers.users_controller import (
-    get_current_user,
-    get_users,
+    get_users_list,
+    get_user_detail,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.infrastructure.http.backend_client import BackendClient
@@ -8,16 +8,21 @@ from src.infrastructure.http.backend_client import BackendClient
 
 @with_error_handling
 @with_backend_client
-def get_users_handler(*, 
-    backend_client: BackendClient
+def get_users_list_handler(
+    *,
+    backend_client: BackendClient,
 ):
-    return get_users(backend_client)
+    return get_users_list(backend_client=backend_client)
 
 
 @with_error_handling
 @with_backend_client
-def get_current_user_handler(
+def get_user_detail_handler(
     *,
     backend_client: BackendClient,
+    user_id: str,
 ):
-    return get_current_user(backend_client)
+    return get_user_detail(
+        backend_client=backend_client,
+        user_id=user_id,
+    )

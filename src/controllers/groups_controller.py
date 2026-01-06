@@ -1,30 +1,27 @@
-from collections.abc import Iterable
-
 from src.infrastructure.config.constants.endpoint_constants import (
-    GROUP_USERS,
-    GROUPS_BY_LEVEL,
-    MCP_GROUPS,
+    MCP_GROUPS_LIST,
+    MCP_GROUP_DETAIL,
 )
 from src.infrastructure.http.backend_client import BackendClient
 
 
-def get_groups(backend_client: BackendClient):
-    return backend_client.get(MCP_GROUPS)
-
-
-def get_groups_by_level(level: str, backend_client: BackendClient):
-
-    return backend_client.post(
-        GROUPS_BY_LEVEL,
-        json={"level": level},
+def get_groups_by_school(
+    *,
+    backend_client: BackendClient,
+    school_id: str,
+):
+    return backend_client.get(
+        MCP_GROUPS_LIST,
+        params={"school_id": school_id},
     )
 
 
-def get_group_users(
-    group_ids: Iterable[str],
+def get_group_detail(
+    *,
     backend_client: BackendClient,
+    group_id: str,
 ):
-    return backend_client.post(
-        GROUP_USERS,
-        json={"group_ids[]": list(group_ids)},
+    return backend_client.get(
+        MCP_GROUP_DETAIL,
+        params={"group_id": group_id},
     )

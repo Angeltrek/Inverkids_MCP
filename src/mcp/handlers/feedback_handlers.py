@@ -1,6 +1,6 @@
-from src.controllers.groups_controller import (
-    get_groups_by_school,
-    get_group_detail,
+from src.controllers.feedback_controller import (
+    get_feedback_list,
+    get_feedback_detail,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.infrastructure.http.backend_client import BackendClient
@@ -8,25 +8,27 @@ from src.infrastructure.http.backend_client import BackendClient
 
 @with_error_handling
 @with_backend_client
-def get_groups_by_school_handler(
+def get_feedback_list_handler(
     *,
     backend_client: BackendClient,
-    school_id: str,
+    module_id: str | None = None,
+    topic_id: str | None = None,
 ):
-    return get_groups_by_school(
+    return get_feedback_list(
         backend_client=backend_client,
-        school_id=school_id,
+        module_id=module_id,
+        topic_id=topic_id,
     )
 
 
 @with_error_handling
 @with_backend_client
-def get_group_detail_handler(
+def get_feedback_detail_handler(
     *,
     backend_client: BackendClient,
-    group_id: str,
+    feedback_id: str,
 ):
-    return get_group_detail(
+    return get_feedback_detail(
         backend_client=backend_client,
-        group_id=group_id,
+        feedback_id=feedback_id,
     )
