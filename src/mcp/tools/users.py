@@ -7,10 +7,16 @@ from src.mcp.handlers.users_handlers import (
 
 @mcp.tool(
     name="get_users_list",
-    description="List student and child users accessible to the requester.",
+    description="List student and child users accessible to the requester. Supports pagination.",
 )
-def get_users_list():
-    return get_users_list_handler()
+def get_users_list(
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_users_list_handler(
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(

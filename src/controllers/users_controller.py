@@ -4,11 +4,20 @@ from src.infrastructure.config.constants.endpoint_constants import (
 )
 from src.infrastructure.http.backend_client import BackendClient
 
+
 def get_users_list(
     *,
     backend_client: BackendClient,
+    limit: int = 20,
+    offset: int = 0,
 ):
-    return backend_client.get(MCP_USERS_LIST)
+    return backend_client.get(
+        MCP_USERS_LIST,
+        params={
+            "limit": limit,
+            "offset": offset,
+        },
+    )
 
 
 def get_user_detail(
