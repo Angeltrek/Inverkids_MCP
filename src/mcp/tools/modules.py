@@ -13,45 +13,68 @@ from src.mcp.handlers.modules_handlers import (
 
 @mcp.tool(
     name="get_modules",
-    description="List all modules ordered by level and module number.",
+    description="List all modules ordered by level and module number. Supports pagination.",
 )
-def get_modules():
-    return get_modules_handler()
+def get_modules(limit: int = 20, offset: int = 0):
+    return get_modules_handler(limit=limit, offset=offset)
 
 
 @mcp.tool(
     name="get_modules_by_level",
-    description="List modules filtered by academic level.",
+    description="List modules filtered by academic level. Supports pagination.",
 )
-def get_modules_by_level(level: str):
-    return get_modules_by_level_handler(level=level)
+def get_modules_by_level(level: str, limit: int = 20, offset: int = 0):
+    return get_modules_by_level_handler(level=level, limit=limit, offset=offset)
 
 
 @mcp.tool(
     name="get_modules_by_white_label",
-    description="List modules filtered by white label.",
+    description="List modules filtered by white label. Supports pagination.",
 )
-def get_modules_by_white_label(white_label: str):
-    return get_modules_by_white_label_handler(white_label=white_label)
+def get_modules_by_white_label(
+    white_label: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_modules_by_white_label_handler(
+        white_label=white_label,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_modules_by_level_and_white_label",
-    description="List modules filtered by level and white label.",
+    description="List modules filtered by level and white label. Supports pagination.",
 )
-def get_modules_by_level_and_white_label(level: str, white_label: str):
+def get_modules_by_level_and_white_label(
+    level: str,
+    white_label: str,
+    limit: int = 20,
+    offset: int = 0,
+):
     return get_modules_by_level_and_white_label_handler(
         level=level,
         white_label=white_label,
+        limit=limit,
+        offset=offset,
     )
 
 
 @mcp.tool(
     name="get_modules_by_number",
-    description="Get modules by module number.",
+    description="Get modules by module number. Supports pagination.",
 )
-def get_modules_by_number(module_number: int):
-    return get_modules_by_number_handler(module_number=module_number)
+def get_modules_by_number(
+    module_number: int,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_modules_by_number_handler(
+        module_number=module_number,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
@@ -64,10 +87,14 @@ def get_last_module_by_level(level: str):
 
 @mcp.tool(
     name="search_modules_by_name",
-    description="Search modules by name (ILIKE, max 20 results).",
+    description="Search modules by name (ILIKE). Supports pagination.",
 )
-def search_modules_by_name(query: str):
-    return search_modules_by_name_handler(query=query)
+def search_modules_by_name(query: str, limit: int = 20, offset: int = 0):
+    return search_modules_by_name_handler(
+        query=query,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
