@@ -1,33 +1,35 @@
 from src.infrastructure.config.constants.endpoint_constants import (
-    MCP_GROUPS_LIST,
-    MCP_GROUP_DETAIL,
+    MCP_FEEDBACK_LIST,
+    MCP_FEEDBACK_DETAIL,
 )
 from src.infrastructure.http.backend_client import BackendClient
 
 
-def get_groups_by_school(
+def get_feedback_list(
     *,
     backend_client: BackendClient,
-    school_id: str,
+    module_id: str | None = None,
+    topic_id: str | None = None,
     limit: int = 20,
     offset: int = 0,
 ):
     return backend_client.get(
-        MCP_GROUPS_LIST,
+        MCP_FEEDBACK_LIST,
         params={
-            "school_id": school_id,
+            "module_id": module_id,
+            "topic_id": topic_id,
             "limit": limit,
             "offset": offset,
         },
     )
 
 
-def get_group_detail(
+def get_feedback_detail(
     *,
     backend_client: BackendClient,
-    group_id: str,
+    feedback_id: str,
 ):
     return backend_client.get(
-        MCP_GROUP_DETAIL,
-        params={"group_id": group_id},
+        MCP_FEEDBACK_DETAIL,
+        params={"feedback_id": feedback_id},
     )

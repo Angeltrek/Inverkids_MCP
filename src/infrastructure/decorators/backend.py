@@ -15,11 +15,14 @@ def with_backend_client(func: Callable) -> Callable:
     """
     @wraps(func)
     def wrapper(*args, **kwargs):
-        token = kwargs.get("token")
-        if not token:
-            raise ValidationError("Token is required", field="token")
+        token = kwargs.get("token", None)
 
-        token = validate_token(token)
+        if token:
+            try:
+                token = validate_token(token)
+            except ValidationError:
+                logger.error("Invalid token provided")
+                raise
 
         try:
             client = get_backend_client(token)
@@ -28,7 +31,6 @@ def with_backend_client(func: Callable) -> Callable:
             raise
 
         kwargs["backend_client"] = client
-        kwargs.pop("token", None)
 
         return func(*args, **kwargs)
 
