@@ -11,9 +11,31 @@ from src.mcp.handlers.modules_handlers import (
 )
 
 
+PRIVACY_NOTE = (
+    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
+    "non-sensitive educational content (learning materials, curriculum structure). "
+    "Internal identifiers (IDs) are used for system operations but should not be "
+    "exposed to end users. When presenting information, use human-readable names "
+    "and descriptions instead of technical identifiers."
+)
+
+WHITE_LABEL_NOTE = (
+    "\n\n**White Label Context:** In Inverkids School environments, always use "
+    "`inverkids_school_v3` as the white_label parameter to ensure you access the "
+    "correct curriculum version and content set."
+)
+
 @mcp.tool(
     name="get_modules",
-    description="List all modules ordered by level and module number. Supports pagination.",
+    description=(
+        "List all available curriculum modules ordered by level and sequence number. "
+        "Modules are major units of learning content that group related topics together "
+        "\n\n**Parameters:**"
+        "\n- limit: Maximum results (default: 20)"
+        "\n- offset: Pagination offset (default: 0)"
+        "\n\n**Returns:** Module titles, descriptions, levels, and sequence information."
+        + PRIVACY_NOTE
+    ),
 )
 def get_modules(limit: int = 20, offset: int = 0):
     return get_modules_handler(limit=limit, offset=offset)
@@ -21,7 +43,15 @@ def get_modules(limit: int = 20, offset: int = 0):
 
 @mcp.tool(
     name="get_modules_by_level",
-    description="List modules filtered by academic level. Supports pagination.",
+    description=(
+        "Filter modules by academic grade level (1-12). Use this to find age-appropriate "
+        "curriculum content for students at a specific level."
+        "\n\n**Parameters:**"
+        "\n- level: Academic level ('1' through '12')"
+        "\n- limit: Maximum results (default: 20)"
+        "\n- offset: Pagination offset (default: 0)"
+        + PRIVACY_NOTE
+    ),
 )
 def get_modules_by_level(level: str, limit: int = 20, offset: int = 0):
     return get_modules_by_level_handler(level=level, limit=limit, offset=offset)
@@ -29,7 +59,16 @@ def get_modules_by_level(level: str, limit: int = 20, offset: int = 0):
 
 @mcp.tool(
     name="get_modules_by_white_label",
-    description="List modules filtered by white label. Supports pagination.",
+    description=(
+        "Filter modules by white label brand/curriculum version. White labels represent "
+        "different curriculum implementations or school partnerships."
+        "\n\n**Parameters:**"
+        "\n- white_label: Brand identifier (recommended: 'inverkids_school_v3' for Inverkids School)"
+        "\n- limit: Maximum results (default: 20)"
+        "\n- offset: Pagination offset (default: 0)"
+        + WHITE_LABEL_NOTE
+        + PRIVACY_NOTE
+    ),
 )
 def get_modules_by_white_label(
     white_label: str,
@@ -45,7 +84,17 @@ def get_modules_by_white_label(
 
 @mcp.tool(
     name="get_modules_by_level_and_white_label",
-    description="List modules filtered by level and white label. Supports pagination.",
+    description=(
+        "Filter modules by both academic level and white label. This is the most precise "
+        "way to get curriculum content for a specific grade in a specific school context."
+        "\n\n**Parameters:**"
+        "\n- level: Academic level ('1' through '12')"
+        "\n- white_label: Brand identifier (recommended: 'inverkids_school_v3')"
+        "\n- limit: Maximum results (default: 20)"
+        "\n- offset: Pagination offset (default: 0)"
+        + WHITE_LABEL_NOTE
+        + PRIVACY_NOTE
+    ),
 )
 def get_modules_by_level_and_white_label(
     level: str,
@@ -63,7 +112,15 @@ def get_modules_by_level_and_white_label(
 
 @mcp.tool(
     name="get_modules_by_number",
-    description="Get modules by module number. Supports pagination.",
+     description=(
+        "Get modules by their sequence number within the curriculum. Module numbers "
+        "indicate the recommended order of instruction (Module 1, Module 2, etc.)."
+        "\n\n**Parameters:**"
+        "\n- module_number: Sequence number (integer)"
+        "\n- limit: Maximum results (default: 20)"
+        "\n- offset: Pagination offset (default: 0)"
+        + PRIVACY_NOTE
+    ),
 )
 def get_modules_by_number(
     module_number: int,
@@ -79,7 +136,13 @@ def get_modules_by_number(
 
 @mcp.tool(
     name="get_last_module_by_level",
-    description="Get the last module available for a given level.",
+    description=(
+        "Get the final/most advanced module available for a given academic level. "
+        "Useful for understanding curriculum scope or finding end-of-year content."
+        "\n\n**Parameters:**"
+        "\n- level: Academic level ('1' through '12')"
+        + PRIVACY_NOTE
+    ),
 )
 def get_last_module_by_level(level: str):
     return get_last_module_by_level_handler(level=level)
@@ -87,7 +150,16 @@ def get_last_module_by_level(level: str):
 
 @mcp.tool(
     name="search_modules_by_name",
-    description="Search modules by name (ILIKE). Supports pagination.",
+    description=(
+        "Search curriculum modules using natural language queries. Searches module "
+        "titles and descriptions to find relevant content."
+        "\n\n**Parameters:**"
+        "\n- query: Search term (e.g., 'fractions', 'history', 'biology')"
+        "\n- limit: Maximum results (default: 20)"
+        "\n- offset: Pagination offset (default: 0)"
+        "\n\n**Search Behavior:** Case-insensitive, partial matching enabled."
+        + PRIVACY_NOTE
+    ),
 )
 def search_modules_by_name(query: str, limit: int = 20, offset: int = 0):
     return search_modules_by_name_handler(
@@ -99,7 +171,12 @@ def search_modules_by_name(query: str, limit: int = 20, offset: int = 0):
 
 @mcp.tool(
     name="get_module_detail",
-    description="Get full module detail by module ID.",
+    description=(
+        "Retrieve comprehensive information about a specific module including full description"
+        "\n\n**Parameters:**"
+        "\n- module_id: Internal module identifier (use internally)"
+        + PRIVACY_NOTE
+    ),
 )
 def get_module_detail(module_id: str):
     return get_module_detail_handler(module_id=module_id)
