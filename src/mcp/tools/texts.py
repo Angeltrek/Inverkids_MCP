@@ -15,74 +15,142 @@ from src.mcp.handlers.texts_handlers import (
 
 @mcp.tool(
     name="get_texts",
-    description="List texts, optionally filtered by module ID.",
+    description="List texts, optionally filtered by module ID. Supports pagination.",
 )
-def get_texts(module_id: str | None = None):
-    return get_texts_handler(module_id=module_id)
+def get_texts(
+    module_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_texts_handler(
+        module_id=module_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_texts_by_module",
-    description="List texts belonging to a module.",
+    description="List texts belonging to a module. Supports pagination.",
 )
-def get_texts_by_module(module_id: str):
-    return get_texts_by_module_handler(module_id=module_id)
+def get_texts_by_module(
+    module_id: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_texts_by_module_handler(
+        module_id=module_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_texts_by_topic",
-    description="List texts belonging to a topic.",
+    description="List texts belonging to a topic. Supports pagination.",
 )
-def get_texts_by_topic(topic_id: str):
-    return get_texts_by_topic_handler(topic_id=topic_id)
+def get_texts_by_topic(
+    topic_id: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_texts_by_topic_handler(
+        topic_id=topic_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_texts_by_level",
-    description="List texts filtered by academic level.",
+    description="List texts filtered by academic level. Supports pagination.",
 )
-def get_texts_by_level(level: str):
-    return get_texts_by_level_handler(level=level)
+def get_texts_by_level(
+    level: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_texts_by_level_handler(
+        level=level,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_home_texts",
-    description="List texts marked as home texts.",
+    description="List texts marked as home texts. Supports pagination.",
 )
-def get_home_texts():
-    return get_home_texts_handler()
+def get_home_texts(
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_home_texts_handler(
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_entry_texts",
-    description="List texts marked as entry texts.",
+    description="List texts marked as entry texts. Supports pagination.",
 )
-def get_entry_texts():
-    return get_entry_texts_handler()
+def get_entry_texts(
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_entry_texts_handler(
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_texts_by_type",
-    description="List texts filtered by text type.",
+    description="List texts filtered by text type. Supports pagination.",
 )
-def get_texts_by_type(text_type: str):
-    return get_texts_by_type_handler(text_type=text_type)
+def get_texts_by_type(
+    text_type: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_texts_by_type_handler(
+        text_type=text_type,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_texts_by_skill",
-    description="List texts associated with a skill.",
+    description="List texts associated with a skill. Supports pagination.",
 )
-def get_texts_by_skill(skill_id: str):
-    return get_texts_by_skill_handler(skill_id=skill_id)
+def get_texts_by_skill(
+    skill_id: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_texts_by_skill_handler(
+        skill_id=skill_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="search_texts_by_name",
-    description="Search texts by name (ILIKE, max 20 results).",
+    description="Search texts by name (ILIKE). Supports pagination.",
 )
-def search_texts_by_name(query: str):
-    return search_texts_by_name_handler(query=query)
+def search_texts_by_name(
+    query: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return search_texts_by_name_handler(
+        query=query,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(

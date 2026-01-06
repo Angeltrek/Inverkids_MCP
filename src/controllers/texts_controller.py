@@ -17,10 +17,16 @@ def get_texts(
     *,
     backend_client: BackendClient,
     module_id: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_TEXTS,
-        params={"module_id": module_id},
+        params={
+            "module_id": module_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -28,10 +34,16 @@ def get_texts_by_module(
     *,
     backend_client: BackendClient,
     module_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_TEXTS_BY_MODULE,
-        params={"module_id": module_id},
+        params={
+            "module_id": module_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -39,10 +51,16 @@ def get_texts_by_topic(
     *,
     backend_client: BackendClient,
     topic_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_TEXTS_BY_TOPIC,
-        params={"topic_id": topic_id},
+        params={
+            "topic_id": topic_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -50,35 +68,63 @@ def get_texts_by_level(
     *,
     backend_client: BackendClient,
     level: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_TEXTS_BY_LEVEL,
-        params={"level": level},
+        params={
+            "level": level,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
 def get_home_texts(
     *,
     backend_client: BackendClient,
+    limit: int = 20,
+    offset: int = 0,
 ):
-    return backend_client.get(MCP_HOME_TEXTS)
+    return backend_client.get(
+        MCP_HOME_TEXTS,
+        params={
+            "limit": limit,
+            "offset": offset,
+        },
+    )
 
 
 def get_entry_texts(
     *,
     backend_client: BackendClient,
+    limit: int = 20,
+    offset: int = 0,
 ):
-    return backend_client.get(MCP_ENTRY_TEXTS)
+    return backend_client.get(
+        MCP_ENTRY_TEXTS,
+        params={
+            "limit": limit,
+            "offset": offset,
+        },
+    )
 
 
 def get_texts_by_type(
     *,
     backend_client: BackendClient,
     text_type: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_TEXTS_BY_TYPE,
-        params={"text_type": text_type},
+        params={
+            "text_type": text_type,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -86,10 +132,16 @@ def get_texts_by_skill(
     *,
     backend_client: BackendClient,
     skill_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_TEXTS_BY_SKILL,
-        params={"skill_id": skill_id},
+        params={
+            "skill_id": skill_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
@@ -97,10 +149,16 @@ def search_texts_by_name(
     *,
     backend_client: BackendClient,
     query: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_SEARCH_TEXTS_BY_NAME,
-        params={"q": query},
+        params={
+            "q": query,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
