@@ -13,18 +13,34 @@ from src.mcp.handlers.activities_handlers import (
 
 @mcp.tool(
     name="get_activities_by_module",
-    description="List activities belonging to a specific module.",
+    description="List activities belonging to a specific module. Supports pagination.",
 )
-def get_activities_by_module(module_id: str):
-    return get_activities_by_module_handler(module_id=module_id)
+def get_activities_by_module(
+    module_id: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_activities_by_module_handler(
+        module_id=module_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_activities_by_type",
-    description="List activities filtered by activity type.",
+    description="List activities filtered by activity type. Supports pagination.",
 )
-def get_activities_by_type(activity_type: str):
-    return get_activities_by_type_handler(activity_type=activity_type)
+def get_activities_by_type(
+    activity_type: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_activities_by_type_handler(
+        activity_type=activity_type,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
@@ -37,34 +53,58 @@ def get_first_activity_by_topic(topic_id: str):
 
 @mcp.tool(
     name="get_extra_activities",
-    description="List all extra (optional) activities.",
+    description="List all extra (optional) activities. Supports pagination.",
 )
-def get_extra_activities():
-    return get_extra_activities_handler()
+def get_extra_activities(limit: int = 20, offset: int = 0):
+    return get_extra_activities_handler(limit=limit, offset=offset)
 
 
 @mcp.tool(
     name="get_activities_by_skill",
-    description="List activities associated with a skill.",
+    description="List activities associated with a skill. Supports pagination.",
 )
-def get_activities_by_skill(skill_id: str):
-    return get_activities_by_skill_handler(skill_id=skill_id)
+def get_activities_by_skill(
+    skill_id: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_activities_by_skill_handler(
+        skill_id=skill_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="get_activities_by_level",
-    description="List activities filtered by academic level.",
+    description="List activities filtered by academic level. Supports pagination.",
 )
-def get_activities_by_level(level: str):
-    return get_activities_by_level_handler(level=level)
+def get_activities_by_level(
+    level: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_activities_by_level_handler(
+        level=level,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
     name="search_activities_by_name",
-    description="Search activities by name (ILIKE, max 20 results).",
+    description="Search activities by name (ILIKE). Supports pagination.",
 )
-def search_activities_by_name(query: str):
-    return search_activities_by_name_handler(query=query)
+def search_activities_by_name(
+    query: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return search_activities_by_name_handler(
+        query=query,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(
