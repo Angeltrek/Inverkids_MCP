@@ -12,10 +12,14 @@ def get_groups_by_school_handler(
     *,
     backend_client: BackendClient,
     school_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return get_groups_by_school(
         backend_client=backend_client,
         school_id=school_id,
+        limit=limit,
+        offset=offset,
     )
 
 

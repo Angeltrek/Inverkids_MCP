@@ -7,10 +7,18 @@ from src.mcp.handlers.groups_handlers import (
 
 @mcp.tool(
     name="get_groups_by_school",
-    description="List groups belonging to a specific school.",
+    description="List groups belonging to a specific school. Supports pagination.",
 )
-def get_groups_by_school(school_id: str):
-    return get_groups_by_school_handler(school_id=school_id)
+def get_groups_by_school(
+    school_id: str,
+    limit: int = 20,
+    offset: int = 0,
+):
+    return get_groups_by_school_handler(
+        school_id=school_id,
+        limit=limit,
+        offset=offset,
+    )
 
 
 @mcp.tool(

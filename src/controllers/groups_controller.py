@@ -9,10 +9,16 @@ def get_groups_by_school(
     *,
     backend_client: BackendClient,
     school_id: str,
+    limit: int = 20,
+    offset: int = 0,
 ):
     return backend_client.get(
         MCP_GROUPS_LIST,
-        params={"school_id": school_id},
+        params={
+            "school_id": school_id,
+            "limit": limit,
+            "offset": offset,
+        },
     )
 
 
