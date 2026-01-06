@@ -2,8 +2,5 @@ openai
 python-dotenv
 requests
 pytest
-# mcp
-# mcp[cli] 
-git+https://github.com/modelcontextprotocol/python-sdk.git
 uv
 fastapi
