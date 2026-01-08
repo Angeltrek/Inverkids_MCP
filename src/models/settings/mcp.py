@@ -3,5 +3,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class MCPConfig:
-    name: str = "inverkids-mcp"
-    log_level: str = "INFO"
+    name: str
+    log_level: str
+    host: str = "0.0.0.0"
+    port: int = 8000

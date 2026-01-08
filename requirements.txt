@@ -2,7 +2,6 @@ openai
 python-dotenv
 requests
 pytest
-mcp
-mcp[cli]
+fastmcp
 uv
 fastapi

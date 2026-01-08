@@ -23,7 +23,7 @@ def load_settings() -> Settings:
     auth_token = os.getenv("INVERKIDS_AUTH_TOKEN")
     if not auth_token:
         raise RuntimeError(
-            "AUTH_TOKEN enviroment variable is required. "
+            "INVERKIDS_AUTH_TOKEN environment variable is required. "
             "Please set it in your .env file."
         )
 
@@ -38,5 +38,7 @@ def load_settings() -> Settings:
         mcp=MCPConfig(
             name=os.getenv("MCP_NAME", "inverkids-mcp"),
             log_level=os.getenv("LOG_LEVEL", "INFO"),
+            host=os.getenv("MCP_HOST", "0.0.0.0"),
+            port=int(os.getenv("MCP_PORT", "8000")),
         ),
     )

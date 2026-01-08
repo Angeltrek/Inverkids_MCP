@@ -1,3 +1,10 @@
-from mcp.server.fastmcp import FastMCP  # type: ignore
+from mcp.server.fastmcp import FastMCP
+from src.infrastructure.config.settings.settings import load_settings
 
-mcp = FastMCP(name="inverkids-mcp", host="0.0.0.0", port=8000)
+settings = load_settings()
+
+mcp = FastMCP(
+    name=settings.mcp.name,
+    host=settings.mcp.host,
+    port=settings.mcp.port,
+)
