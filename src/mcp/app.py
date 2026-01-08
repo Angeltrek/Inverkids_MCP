@@ -1,3 +1,10 @@
-from fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP
+from src.infrastructure.config.settings.settings import load_settings
 
-mcp = FastMCP(name="inverkids-mcp", host="127.0.0.1", port=4317)
+settings = load_settings()
+
+mcp = FastMCP(
+    name=settings.mcp.name,
+    host=settings.mcp.host,
+    port=settings.mcp.port,
+)
