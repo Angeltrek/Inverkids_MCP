@@ -13,15 +13,6 @@ from src.mcp.handlers.texts_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_texts",
     description=(
@@ -32,7 +23,6 @@ PRIVACY_NOTE = (
         "\n- module_id: Filter by module (optional, internal ID)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_texts(
@@ -56,7 +46,6 @@ def get_texts(
         "\n- module_id: Internal module identifier (use internally)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_texts_by_module(
@@ -81,7 +70,6 @@ def get_texts_by_module(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Finding texts directly related to what the student is currently learning."
-        + PRIVACY_NOTE
     ),
 )
 def get_texts_by_topic(
@@ -106,7 +94,6 @@ def get_texts_by_topic(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Finding age-appropriate reading materials for literacy instruction."
-        + PRIVACY_NOTE
     ),
 )
 def get_texts_by_level(
@@ -130,7 +117,6 @@ def get_texts_by_level(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Providing take-home reading assignments or family engagement materials."
-        + PRIVACY_NOTE
     ),
 )
 def get_home_texts(
@@ -152,7 +138,6 @@ def get_home_texts(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Starting a new topic - provide students with baseline readings first."
-        + PRIVACY_NOTE
     ),
 )
 def get_entry_texts(
@@ -175,7 +160,6 @@ def get_entry_texts(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Finding specific text genres for literacy or content instruction."
-        + PRIVACY_NOTE
     ),
 )
 def get_texts_by_type(
@@ -200,7 +184,6 @@ def get_texts_by_type(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Creating skill-focused reading practice or targeted intervention materials."
-        + PRIVACY_NOTE
     ),
 )
 def get_texts_by_skill(
@@ -226,7 +209,6 @@ def get_texts_by_skill(
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Search Behavior:** Case-insensitive, partial matching enabled."
         "\n\n**Use Case:** Student asks for reading about a specific topic - use this to discover texts."
-        + PRIVACY_NOTE
     ),
 )
 def search_texts_by_name(
@@ -248,7 +230,6 @@ def search_texts_by_name(
         "\n\n**Parameters:**"
         "\n- text_id: Internal text identifier (use internally)"
         "\n\n**Returns:** Full text with all metadata and instructional scaffolding."
-        + PRIVACY_NOTE
     ),
 )
 def get_text_detail(text_id: str):

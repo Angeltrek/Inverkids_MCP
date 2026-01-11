@@ -11,20 +11,6 @@ from src.mcp.handlers.modules_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-WHITE_LABEL_NOTE = (
-    "\n\n**White Label Context:** In Inverkids School environments, always use "
-    "`inverkids_school_v3` as the white_label parameter to ensure you access the "
-    "correct curriculum version and content set."
-)
-
 @mcp.tool(
     name="get_modules",
     description=(
@@ -34,7 +20,6 @@ WHITE_LABEL_NOTE = (
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Returns:** Module titles, descriptions, levels, and sequence information."
-        + PRIVACY_NOTE
     ),
 )
 def get_modules(limit: int = 20, offset: int = 0):
@@ -50,7 +35,6 @@ def get_modules(limit: int = 20, offset: int = 0):
         "\n- level: Academic level ('1' through '12')"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_modules_by_level(level: str, limit: int = 20, offset: int = 0):
@@ -66,8 +50,8 @@ def get_modules_by_level(level: str, limit: int = 20, offset: int = 0):
         "\n- white_label: Brand identifier (recommended: 'inverkids_school_v3' for Inverkids School)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + WHITE_LABEL_NOTE
-        + PRIVACY_NOTE
+        "\n In Inverkids School environments, always use "
+        "\n `inverkids_school_v3` as the white_label "
     ),
 )
 def get_modules_by_white_label(
@@ -92,8 +76,8 @@ def get_modules_by_white_label(
         "\n- white_label: Brand identifier (recommended: 'inverkids_school_v3')"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + WHITE_LABEL_NOTE
-        + PRIVACY_NOTE
+        "\n In Inverkids School environments, always use "
+        "\n `inverkids_school_v3` as the white_label "
     ),
 )
 def get_modules_by_level_and_white_label(
@@ -119,7 +103,6 @@ def get_modules_by_level_and_white_label(
         "\n- module_number: Sequence number (integer)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_modules_by_number(
@@ -141,7 +124,6 @@ def get_modules_by_number(
         "Useful for understanding curriculum scope or finding end-of-year content."
         "\n\n**Parameters:**"
         "\n- level: Academic level ('1' through '12')"
-        + PRIVACY_NOTE
     ),
 )
 def get_last_module_by_level(level: str):
@@ -158,7 +140,6 @@ def get_last_module_by_level(level: str):
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Search Behavior:** Case-insensitive, partial matching enabled."
-        + PRIVACY_NOTE
     ),
 )
 def search_modules_by_name(query: str, limit: int = 20, offset: int = 0):
@@ -175,7 +156,6 @@ def search_modules_by_name(query: str, limit: int = 20, offset: int = 0):
         "Retrieve comprehensive information about a specific module including full description"
         "\n\n**Parameters:**"
         "\n- module_id: Internal module identifier (use internally)"
-        + PRIVACY_NOTE
     ),
 )
 def get_module_detail(module_id: str):

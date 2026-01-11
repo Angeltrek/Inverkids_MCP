@@ -5,15 +5,6 @@ from src.mcp.handlers.groups_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_groups_by_school",
     description=(
@@ -25,7 +16,6 @@ PRIVACY_NOTE = (
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Returns:** Group names, levels, and metadata (no student personal information)."
-        + PRIVACY_NOTE
     ),
 )
 def get_groups_by_school(
@@ -47,7 +37,6 @@ def get_groups_by_school(
         "schedule, and associated teachers. Does not expose individual student data."
         "\n\n**Parameters:**"
         "\n- group_id: Internal group identifier (use internally)"
-        + PRIVACY_NOTE
     ),
 )
 def get_group_detail(group_id: str):

@@ -13,15 +13,6 @@ from src.mcp.handlers.topics_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_topics",
     description=(
@@ -33,7 +24,6 @@ PRIVACY_NOTE = (
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Browse curriculum structure or find all topics in a module to create learning sequences."
-        + PRIVACY_NOTE
     ),
 )
 def get_topics(
@@ -58,7 +48,6 @@ def get_topics(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Creating grade-specific curriculum plans or finding topics suitable for a student's level."
-        + PRIVACY_NOTE
     ),
 )
 def get_topics_by_level(
@@ -82,7 +71,6 @@ def get_topics_by_level(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Finding topics with built-in practice assessments for self-evaluation."
-        + PRIVACY_NOTE
     ),
 )
 def get_topics_with_quiz(limit: int = 20, offset: int = 0):
@@ -98,7 +86,6 @@ def get_topics_with_quiz(limit: int = 20, offset: int = 0):
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Finding topics with formal assessment components for progress tracking."
-        + PRIVACY_NOTE
     ),
 )
 def get_topics_with_eval(limit: int = 20, offset: int = 0):
@@ -114,7 +101,6 @@ def get_topics_with_eval(limit: int = 20, offset: int = 0):
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Finding topics with diagnostic tools to assess baseline knowledge."
-        + PRIVACY_NOTE
     ),
 )
 def get_topics_with_diag(limit: int = 20, offset: int = 0):
@@ -130,7 +116,6 @@ def get_topics_with_diag(limit: int = 20, offset: int = 0):
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Finding topics for non-graded learning or exploratory study."
-        + PRIVACY_NOTE
     ),
 )
 def get_topics_without_assessment(limit: int = 20, offset: int = 0):
@@ -145,7 +130,6 @@ def get_topics_without_assessment(limit: int = 20, offset: int = 0):
         "\n\n**Parameters:**"
         "\n- module_id: Internal module identifier (use internally)"
         "\n\n**Use Case:** Finding the end point of a module's learning sequence or identifying advanced topics."
-        + PRIVACY_NOTE
     ),
 )
 def get_last_topic_by_module(module_id: str):
@@ -163,7 +147,6 @@ def get_last_topic_by_module(module_id: str):
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Search Behavior:** Case-insensitive, partial matching enabled."
         "\n\n**Use Case:** Student asks 'I want to learn about X' - search topics first to find relevant content."
-        + PRIVACY_NOTE
     ),
 )
 def search_topics_by_name(
@@ -189,7 +172,6 @@ def search_topics_by_name(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Student is working through a module and asks about a specific concept within it."
-        + PRIVACY_NOTE
     ),
 )
 def search_topics_by_name_in_module(
@@ -213,7 +195,6 @@ def search_topics_by_name_in_module(
         "\n\n**Parameters:**"
         "\n- topic_id: Internal topic identifier (use internally)"
         "\n\n**Returns:** Complete topic data with all metadata and instructional context."
-        + PRIVACY_NOTE
     ),
 )
 def get_topic_detail(topic_id: str):

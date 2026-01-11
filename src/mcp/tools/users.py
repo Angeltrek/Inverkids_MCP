@@ -5,15 +5,6 @@ from src.mcp.handlers.users_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_users_list",
     description=(
@@ -26,7 +17,6 @@ PRIVACY_NOTE = (
         "\n\n**Returns:** Basic user profiles (names, levels, groups) - no sensitive personal data."
         "\n\n**Use Case:** Teachers viewing their class roster, parents checking children's accounts."
         "\n\n**Important:** Never expose user IDs in responses. Present only names and educational context."
-        + PRIVACY_NOTE
     ),
 )
 def get_users_list(
@@ -50,7 +40,6 @@ def get_users_list(
         "\n\n**Privacy Rule:** Only show user details if: (1) it's the user's own profile, "
         "or (2) requester has authorized access (teacher viewing student, parent viewing child)."
         "\n\n**Important:** Do not expose the user_id in your response. Reference users by name only."
-        + PRIVACY_NOTE
     ),
 )
 def get_user_detail(user_id: str):

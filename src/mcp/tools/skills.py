@@ -7,15 +7,6 @@ from src.mcp.handlers.skills_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_skills",
     description=(
@@ -26,7 +17,6 @@ PRIVACY_NOTE = (
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Map activities to competency frameworks or track skill development."
-        + PRIVACY_NOTE
     ),
 )
 def get_skills(
@@ -48,7 +38,6 @@ def get_skills(
         "\n- skill_type: Category of skills to retrieve"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_skills_by_type(
@@ -74,7 +63,6 @@ def get_skills_by_type(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Search Behavior:** Case-insensitive, partial matching, bilingual (ES/EN)."
-        + PRIVACY_NOTE
     ),
 )
 def search_skills(
@@ -96,7 +84,6 @@ def search_skills(
         "associated learning standards, and progression across grade levels."
         "\n\n**Parameters:**"
         "\n- skill_id: Internal skill identifier (use internally)"
-        + PRIVACY_NOTE
     ),
 )
 def get_skill_detail(skill_id: str):

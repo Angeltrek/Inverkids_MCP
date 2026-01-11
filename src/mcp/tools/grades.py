@@ -11,15 +11,6 @@ from src.mcp.handlers.grades_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_grades_by_level",
     description=(
@@ -31,7 +22,6 @@ PRIVACY_NOTE = (
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Note:** Grades are educational performance metrics, not personally identifiable."
-        + PRIVACY_NOTE
     ),
 )
 def get_grades_by_level(
@@ -55,7 +45,6 @@ def get_grades_by_level(
         "\n- group_id: Internal group identifier (use internally)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_grades_by_group(
@@ -82,7 +71,6 @@ def get_grades_by_group(
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Privacy:** When presenting grades, show only the student's own data or "
         "aggregated/anonymized class data."
-        + PRIVACY_NOTE
     ),
 )
 def get_grades_by_student(
@@ -106,7 +94,6 @@ def get_grades_by_student(
         "\n- module_id: Internal module identifier (use internally)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_grades_by_module(
@@ -130,7 +117,6 @@ def get_grades_by_module(
         "\n- topic_id: Internal topic identifier (use internally)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_grades_by_topic(
@@ -154,7 +140,6 @@ def get_grades_by_topic(
         "\n- activity_id: Internal activity identifier (use internally)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_grades_by_activity(
@@ -176,7 +161,6 @@ def get_grades_by_activity(
         "submission time, feedback, and performance metadata."
         "\n\n**Parameters:**"
         "\n- grade_id: Internal grade identifier (use internally)"
-        + PRIVACY_NOTE
     ),
 )
 def get_grade_detail(grade_id: str):
@@ -192,7 +176,6 @@ def get_grade_detail(grade_id: str):
         "\n\n**Parameters:**"
         "\n- module_id: Internal module identifier (use internally)"
         "\n\n**Returns:** Aggregated statistics (count, avg, min, max) - no individual student data."
-        + PRIVACY_NOTE
     ),
 )
 def get_grades_summary(module_id: str):

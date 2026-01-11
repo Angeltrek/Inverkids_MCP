@@ -11,15 +11,6 @@ from src.mcp.handlers.activities_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_activities_by_module",
     description=(
@@ -31,7 +22,6 @@ PRIVACY_NOTE = (
         "\n- module_id: Internal module identifier (use internally, don't expose to users)"
         "\n- limit: Maximum number of results per page (default: 20)"
         "\n- offset: Starting position for pagination (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_activities_by_module(
@@ -56,7 +46,6 @@ def get_activities_by_module(
         "\n- activity_type: Type of activity to filter by"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_activities_by_type(
@@ -81,7 +70,6 @@ def get_activities_by_type(
         "to provide them with the foundational first activity."
         "\n\n**Parameters:**"
         "\n- topic_id: Internal topic identifier (use internally)"
-        + PRIVACY_NOTE
     ),
 )
 def get_first_activity_by_topic(topic_id: str):
@@ -95,7 +83,6 @@ def get_first_activity_by_topic(topic_id: str):
         "enrichment activities beyond the core curriculum, useful for advanced students "
         "or those needing extra practice. Supports pagination for browsing through "
         "available supplementary content."
-        + PRIVACY_NOTE
     ),
 )
 def get_extra_activities(limit: int = 20, offset: int = 0):
@@ -113,7 +100,6 @@ def get_extra_activities(limit: int = 20, offset: int = 0):
         "\n- skill_id: Internal skill identifier (use internally)"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_activities_by_skill(
@@ -138,7 +124,6 @@ def get_activities_by_skill(
         "\n- level: Academic level as string ('1' through '12')"
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
-        + PRIVACY_NOTE
     ),
 )
 def get_activities_by_level(
@@ -164,7 +149,6 @@ def get_activities_by_level(
         "\n- limit: Maximum results (default: 20)"
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Search Behavior:** Case-insensitive, partial matching enabled."
-        + PRIVACY_NOTE
     ),
 )
 def search_activities_by_name(
@@ -188,7 +172,6 @@ def search_activities_by_name(
         "\n\n**Parameters:**"
         "\n- activity_id: Internal activity identifier (use internally)"
         "\n\n**Returns:** Full activity data including content, metadata, and pedagogical information."
-        + PRIVACY_NOTE
     ),
 )
 def get_activity_detail(activity_id: str):

@@ -5,15 +5,6 @@ from src.mcp.handlers.feedback_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_feedback_list",
     description=(
@@ -28,7 +19,6 @@ PRIVACY_NOTE = (
         "\n- offset: Pagination offset (default: 0)"
         "\n\n**Use Case:** Retrieve feedback to understand common learning challenges "
         "or provide contextualized support to users."
-        + PRIVACY_NOTE
     ),
 )
 def get_feedback_list(
@@ -53,7 +43,6 @@ def get_feedback_list(
         "feedback on their work."
         "\n\n**Parameters:**"
         "\n- feedback_id: Internal feedback identifier (use internally)"
-        + PRIVACY_NOTE
     ),
 )
 def get_feedback_detail(feedback_id: str):
