@@ -3,11 +3,8 @@ from src.controllers.texts_controller import (
     get_texts_by_module,
     get_texts_by_topic,
     get_texts_by_level,
-    get_home_texts,
-    get_entry_texts,
     get_texts_by_type,
     get_texts_by_skill,
-    search_texts_by_name,
     get_text_detail,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
@@ -84,36 +81,6 @@ def get_texts_by_level_handler(
 
 @with_error_handling
 @with_backend_client
-def get_home_texts_handler(
-    *,
-    backend_client: BackendClient,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return get_home_texts(
-        backend_client=backend_client,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def get_entry_texts_handler(
-    *,
-    backend_client: BackendClient,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return get_entry_texts(
-        backend_client=backend_client,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
 def get_texts_by_type_handler(
     *,
     backend_client: BackendClient,
@@ -141,23 +108,6 @@ def get_texts_by_skill_handler(
     return get_texts_by_skill(
         backend_client=backend_client,
         skill_id=skill_id,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def search_texts_by_name_handler(
-    *,
-    backend_client: BackendClient,
-    query: str,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return search_texts_by_name(
-        backend_client=backend_client,
-        query=query,
         limit=limit,
         offset=offset,
     )

@@ -11,11 +11,9 @@ from src.mcp.handlers.schools_handlers import (
         "List educational institutions (schools) accessible to the authenticated user. "
         "Returns basic school information including names and locations. This is non-sensitive "
         "institutional data, not personal information."
-        "\n\n**Parameters:**"
-        "\n- limit: Maximum results (default: 20)"
-        "\n- offset: Pagination offset (default: 0)"
-        "\n\n**Access:** Results are filtered based on user permissions (teachers see their "
-        "schools, admins see all schools, etc.)."
+        "Parameters:"
+        "- limit: Maximum results (default: 20)"
+        "- offset: Pagination offset (default: 0)"
     ),
 )
 def get_schools_list(
@@ -34,8 +32,8 @@ def get_schools_list(
         "Get detailed information about a specific school including name, address, "
         "contact information, and organizational structure. This is public or semi-public "
         "institutional data."
-        "\n\n**Parameters:**"
-        "\n- school_id: Internal school identifier (use internally)"
+        "Parameters:"
+        "- school_id: Internal school identifier (use internally)"
     ),
 )
 def get_school_detail(school_id: str):
