@@ -12,7 +12,9 @@ from typing import List, Dict, Optional
     description=(
         "Create a virtual module and associate it with existing topics.\n"
         "Parameters:\n"
-        "- pbl_name: PBL name this virtual module belongs to\n"
+        "- pbl_name: PBL name this virtual module belongs to (e.g. {'en': '...', 'es': '...'})\n"
+        "- module_number: Sequence number (integer)"
+        "- level: Academic level (e.g. '1', '2', ..., '12')\n"
         "- name: localized name (e.g. {'en': '...', 'es': '...'})\n"
         "- description: localized description (e.g. {'en': '...', 'es': '...'})\n"
         "- topic_ids: ordered list of topic UUIDs\n"
@@ -20,7 +22,9 @@ from typing import List, Dict, Optional
     ),
 )
 def create_virtual_module(
-    pbl_name: str,
+    pbl_name: Dict[str, str],
+    module_number: int,
+    level: str,
     name: Dict[str, str],
     description: Dict[str, str],
     topic_ids: List[str],
@@ -28,6 +32,8 @@ def create_virtual_module(
 ):
     return create_virtual_module_handler(
         pbl_name=pbl_name,
+        module_number=module_number,
+        level=level,
         name=name,
         description=description,
         topic_ids=topic_ids,

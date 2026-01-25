@@ -17,7 +17,9 @@ from typing import List, Dict, Optional
 def create_virtual_module_handler(
     *,
     backend_client: BackendClient,
-    pbl_name: str,
+    pbl_name: Dict[str, str],
+    module_number: int,
+    level: str,
     name: Dict[str, str],
     description: Dict[str, str],
     topic_ids: List[str],
@@ -26,6 +28,8 @@ def create_virtual_module_handler(
     return create_virtual_module(
         backend_client=backend_client,
         pbl_name=pbl_name,
+        module_number=module_number,
+        level=level,
         name=name,
         description=description,
         topic_ids=topic_ids,
