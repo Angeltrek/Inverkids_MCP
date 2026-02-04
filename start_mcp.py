@@ -17,7 +17,6 @@ import src.mcp.tools.texts
 import src.mcp.tools.topics
 import src.mcp.tools.users
 import src.mcp.tools.tags
-import src.mcp.tools.virutal_modules
 
 
 def main():
