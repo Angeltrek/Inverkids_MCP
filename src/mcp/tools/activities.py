@@ -4,6 +4,7 @@ from src.mcp.handlers.activities_handlers import (
     get_activities_by_skill_handler,
     get_activities_by_level_handler,
     get_activity_detail_handler,
+    generate_activity_pdf_handler,
 )
 
 
@@ -83,3 +84,17 @@ def get_activities_by_level(
 )
 def get_activity_detail(activity_id: str):
     return get_activity_detail_handler(activity_id=activity_id)
+
+
+@mcp.tool(
+    name="generate_activity_pdf",
+    description=(
+        "Generate a printable PDF for an educational activity using a structured JSON schema. "
+        "The JSON must strictly follow the activity response schema. "
+        "This tool generates a PDF and returns a download URL or file reference."
+    ),
+)
+def generate_activity_pdf(
+    activity: dict,
+):
+    return generate_activity_pdf_handler(activity=activity)
