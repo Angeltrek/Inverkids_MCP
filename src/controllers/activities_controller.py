@@ -74,10 +74,12 @@ def generate_activity_pdf(
     *,
     backend_client: BackendClient,
     activity: dict,
+    teacher: dict,
 ):
     return backend_client.post(
         MCP_GENERATE_ACTIVITY_PDF,
         json={
-            "activity": activity
+            "activity": activity,
+            "teacher": teacher,
         },
     )

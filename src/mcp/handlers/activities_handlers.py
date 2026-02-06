@@ -79,8 +79,10 @@ def generate_activity_pdf_handler(
     *,
     backend_client: BackendClient,
     activity: dict,
+    teacher: dict,
 ):
     return generate_activity_pdf(
         backend_client=backend_client,
         activity=activity,
+        teacher=teacher,
     )

@@ -82,19 +82,24 @@ def get_activities_by_level(
         "- activity_id: Internal activity identifier (use internally)"
     ),
 )
-def get_activity_detail(activity_id: str):
+def get_activity_detail(
+    activity_id: str
+):
     return get_activity_detail_handler(activity_id=activity_id)
 
 
 @mcp.tool(
     name="generate_activity_pdf",
     description=(
-        "Generate a printable PDF for an educational activity using a structured JSON schema. "
-        "The JSON must strictly follow the activity response schema. "
-        "This tool generates a PDF and returns a download URL or file reference."
+        "Generate printable PDFs for an educational activity. "
+        "Generates student and teacher versions in ES and EN."
     ),
 )
 def generate_activity_pdf(
     activity: dict,
+    teacher: dict,
 ):
-    return generate_activity_pdf_handler(activity=activity)
+    return generate_activity_pdf_handler(
+        activity=activity,
+        teacher=teacher,
+    )
