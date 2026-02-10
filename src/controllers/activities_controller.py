@@ -3,7 +3,7 @@ from src.infrastructure.config.constants.endpoint_constants import (
     MCP_ACTIVITIES_BY_SKILL,
     MCP_ACTIVITIES_BY_LEVEL,
     MCP_ACTIVITY_DETAIL,
-    MCP_GENERATE_ACTIVITY_PDF,
+    MCP_GENERATE_ACTIVITY,
 )
 from src.infrastructure.http.backend_client import BackendClient
 
@@ -70,16 +70,20 @@ def get_activity_detail(
     )
 
 
-def generate_activity_pdf(
+def generate_activity(
     *,
     backend_client: BackendClient,
     activity: dict,
     teacher: dict,
+    module_ids: list[str] = None,
+    topic_ids: list[str] = None,
 ):
     return backend_client.post(
-        MCP_GENERATE_ACTIVITY_PDF,
+        MCP_GENERATE_ACTIVITY,
         json={
             "activity": activity,
             "teacher": teacher,
+            "module_ids": module_ids or [],
+            "topic_ids": topic_ids or [],
         },
     )

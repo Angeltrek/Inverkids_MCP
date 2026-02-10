@@ -4,7 +4,7 @@ from src.mcp.handlers.activities_handlers import (
     get_activities_by_skill_handler,
     get_activities_by_level_handler,
     get_activity_detail_handler,
-    generate_activity_pdf_handler,
+    generate_activity_handler,
 )
 
 
@@ -93,13 +93,21 @@ def get_activity_detail(
     description=(
         "Generate printable PDFs for an educational activity. "
         "Generates student and teacher versions in ES and EN."
+        "- activity: Activity details as a dictionary (use internally)"
+        "- teacher: Teacher details as a dictionary (use internally)"
+        "- module_ids: Internal module identifiers (use internally)"
+        "- topic_ids: Internal topic identifiers (use internally)"
     ),
 )
-def generate_activity_pdf(
+def generate_activity(
     activity: dict,
     teacher: dict,
+    module_ids: list[str],
+    topic_ids: list[str],
 ):
-    return generate_activity_pdf_handler(
+    return generate_activity_handler(
         activity=activity,
         teacher=teacher,
+        module_ids=module_ids,
+        topic_ids=topic_ids,
     )

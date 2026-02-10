@@ -31,7 +31,7 @@ MCP_ACTIVITIES_BY_SKILL = f"{BASE}/mcp/get_activities_by_skill"
 MCP_ACTIVITY_DETAIL = f"{BASE}/mcp/get_activity_detail"
 
 # Activity PDF generation
-MCP_GENERATE_ACTIVITY_PDF = f"{BASE}/mcp/generate_activity_pdf"
+MCP_GENERATE_ACTIVITY = f"{BASE}/mcp/generate_activity"
 
 
 # Texts

@@ -3,7 +3,7 @@ from src.controllers.activities_controller import (
     get_activities_by_skill,
     get_activities_by_level,
     get_activity_detail,
-    generate_activity_pdf,
+    generate_activity,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.infrastructure.http.backend_client import BackendClient
@@ -75,14 +75,18 @@ def get_activity_detail_handler(
 
 @with_error_handling
 @with_backend_client
-def generate_activity_pdf_handler(
+def generate_activity_handler(
     *,
     backend_client: BackendClient,
     activity: dict,
     teacher: dict,
+    module_ids: list[str],
+    topic_ids: list[str],
 ):
-    return generate_activity_pdf(
+    return generate_activity(
         backend_client=backend_client,
         activity=activity,
         teacher=teacher,
+        module_ids=module_ids,
+        topic_ids=topic_ids,
     )
