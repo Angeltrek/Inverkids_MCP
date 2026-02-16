@@ -89,10 +89,9 @@ def get_activity_detail(
 
 
 @mcp.tool(
-    name="generate_activity_pdf",
+    name="generate_activity",
     description=(
-        "Generate printable PDFs for an educational activity. "
-        "Generates student and teacher versions in ES and EN."
+        "Generates student and teacher versions in ES or EN."
         "- activity: Activity details as a dictionary (use internally)"
         "- teacher: Teacher details as a dictionary (use internally)"
         "- module_ids: Internal module identifiers (use internally)"
