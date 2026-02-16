@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ruff_cache/
+.venv/
+venv/
+
+# Environment
+.env
+.env.*
+
+# Local runners / experiments
+main.py
+
+# OS
+.DS_Store
+
+# Test artifacts
+.pytest_cache/
+
+# Executables
+*.exe
