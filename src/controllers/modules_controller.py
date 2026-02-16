@@ -1,11 +1,8 @@
 from src.infrastructure.config.constants.endpoint_constants import (
     MCP_MODULES,
-    MCP_MODULES_BY_LEVEL,
     MCP_MODULES_BY_WHITE_LABEL,
     MCP_MODULES_BY_LEVEL_AND_WHITE_LABEL,
     MCP_MODULES_BY_NUMBER,
-    MCP_LAST_MODULE_BY_LEVEL,
-    MCP_SEARCH_MODULES_BY_NAME,
     MCP_MODULE_DETAIL,
 )
 from src.infrastructure.http.backend_client import BackendClient
@@ -15,15 +12,6 @@ def get_modules(*, backend_client: BackendClient, limit: int, offset: int):
     return backend_client.get(
         MCP_MODULES,
         params={"limit": limit, "offset": offset},
-    )
-
-
-def get_modules_by_level(
-    *, backend_client: BackendClient, level: str, limit: int, offset: int
-):
-    return backend_client.get(
-        MCP_MODULES_BY_LEVEL,
-        params={"level": level, "limit": limit, "offset": offset},
     )
 
 
@@ -65,22 +53,6 @@ def get_modules_by_number(
             "limit": limit,
             "offset": offset,
         },
-    )
-
-
-def get_last_module_by_level(*, backend_client: BackendClient, level: str):
-    return backend_client.get(
-        MCP_LAST_MODULE_BY_LEVEL,
-        params={"level": level},
-    )
-
-
-def search_modules_by_name(
-    *, backend_client: BackendClient, query: str, limit: int, offset: int
-):
-    return backend_client.get(
-        MCP_SEARCH_MODULES_BY_NAME,
-        params={"q": query, "limit": limit, "offset": offset},
     )
 
 
