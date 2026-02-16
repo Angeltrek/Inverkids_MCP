@@ -3,11 +3,8 @@ from src.infrastructure.config.constants.endpoint_constants import (
     MCP_TEXTS_BY_MODULE,
     MCP_TEXTS_BY_TOPIC,
     MCP_TEXTS_BY_LEVEL,
-    MCP_HOME_TEXTS,
-    MCP_ENTRY_TEXTS,
     MCP_TEXTS_BY_TYPE,
     MCP_TEXTS_BY_SKILL,
-    MCP_SEARCH_TEXTS_BY_NAME,
     MCP_TEXT_DETAIL,
 )
 from src.infrastructure.http.backend_client import BackendClient
@@ -81,36 +78,6 @@ def get_texts_by_level(
     )
 
 
-def get_home_texts(
-    *,
-    backend_client: BackendClient,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return backend_client.get(
-        MCP_HOME_TEXTS,
-        params={
-            "limit": limit,
-            "offset": offset,
-        },
-    )
-
-
-def get_entry_texts(
-    *,
-    backend_client: BackendClient,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return backend_client.get(
-        MCP_ENTRY_TEXTS,
-        params={
-            "limit": limit,
-            "offset": offset,
-        },
-    )
-
-
 def get_texts_by_type(
     *,
     backend_client: BackendClient,
@@ -139,23 +106,6 @@ def get_texts_by_skill(
         MCP_TEXTS_BY_SKILL,
         params={
             "skill_id": skill_id,
-            "limit": limit,
-            "offset": offset,
-        },
-    )
-
-
-def search_texts_by_name(
-    *,
-    backend_client: BackendClient,
-    query: str,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return backend_client.get(
-        MCP_SEARCH_TEXTS_BY_NAME,
-        params={
-            "q": query,
             "limit": limit,
             "offset": offset,
         },

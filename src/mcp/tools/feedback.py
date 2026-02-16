@@ -5,30 +5,15 @@ from src.mcp.handlers.feedback_handlers import (
 )
 
 
-PRIVACY_NOTE = (
-    "\n\n**Privacy & Data Protection:** All data accessed through this tool is "
-    "non-sensitive educational content (learning materials, curriculum structure). "
-    "Internal identifiers (IDs) are used for system operations but should not be "
-    "exposed to end users. When presenting information, use human-readable names "
-    "and descriptions instead of technical identifiers."
-)
-
-
 @mcp.tool(
     name="get_feedback_list",
     description=(
-        "Access educational feedback entries (teacher comments, system-generated feedback, "
-        "peer reviews). Feedback can be filtered by module and/or topic to find relevant "
-        "instructional guidance. This is non-sensitive educational commentary focused on "
-        "learning improvement."
-        "\n\n**Parameters:**"
-        "\n- module_id: Filter by module (optional, internal ID)"
-        "\n- topic_id: Filter by topic (optional, internal ID)"
-        "\n- limit: Maximum results (default: 20)"
-        "\n- offset: Pagination offset (default: 0)"
-        "\n\n**Use Case:** Retrieve feedback to understand common learning challenges "
-        "or provide contextualized support to users."
-        + PRIVACY_NOTE
+        "Access educational feedback entries."
+        "Parameters:"
+        "- module_id: Filter by module (optional, internal ID)"
+        "- topic_id: Filter by topic (optional, internal ID)"
+        "- limit: Maximum results (default: 20)"
+        "- offset: Pagination offset (default: 0)"
     ),
 )
 def get_feedback_list(
@@ -48,12 +33,9 @@ def get_feedback_list(
 @mcp.tool(
     name="get_feedback_detail",
     description=(
-        "Get complete feedback details including the full comment, context, timestamp, "
-        "and associated learning materials. Use this to provide students with comprehensive "
-        "feedback on their work."
-        "\n\n**Parameters:**"
-        "\n- feedback_id: Internal feedback identifier (use internally)"
-        + PRIVACY_NOTE
+        "Get complete feedback details."
+        "Parameters:"
+        "- feedback_id: Internal feedback identifier (use internally)"
     ),
 )
 def get_feedback_detail(feedback_id: str):

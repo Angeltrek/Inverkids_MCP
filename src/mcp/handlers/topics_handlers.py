@@ -1,14 +1,8 @@
 from src.controllers.topics_controller import (
     get_topics,
     get_topics_by_level,
-    get_topics_with_quiz,
-    get_topics_with_eval,
-    get_topics_with_diag,
-    get_topics_without_assessment,
-    get_last_topic_by_module,
-    search_topics_by_name,
-    search_topics_by_name_in_module,
     get_topic_detail,
+    get_topics_by_tags,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
 from src.infrastructure.http.backend_client import BackendClient
@@ -50,115 +44,6 @@ def get_topics_by_level_handler(
 
 @with_error_handling
 @with_backend_client
-def get_topics_with_quiz_handler(
-    *,
-    backend_client: BackendClient,
-    limit: int,
-    offset: int,
-):
-    return get_topics_with_quiz(
-        backend_client=backend_client,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def get_topics_with_eval_handler(
-    *,
-    backend_client: BackendClient,
-    limit: int,
-    offset: int,
-):
-    return get_topics_with_eval(
-        backend_client=backend_client,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def get_topics_with_diag_handler(
-    *,
-    backend_client: BackendClient,
-    limit: int,
-    offset: int,
-):
-    return get_topics_with_diag(
-        backend_client=backend_client,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def get_topics_without_assessment_handler(
-    *,
-    backend_client: BackendClient,
-    limit: int,
-    offset: int,
-):
-    return get_topics_without_assessment(
-        backend_client=backend_client,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def get_last_topic_by_module_handler(
-    *,
-    backend_client: BackendClient,
-    module_id: str,
-):
-    return get_last_topic_by_module(
-        backend_client=backend_client,
-        module_id=module_id,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def search_topics_by_name_handler(
-    *,
-    backend_client: BackendClient,
-    query: str,
-    limit: int,
-    offset: int,
-):
-    return search_topics_by_name(
-        backend_client=backend_client,
-        query=query,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def search_topics_by_name_in_module_handler(
-    *,
-    backend_client: BackendClient,
-    module_id: str,
-    query: str,
-    limit: int,
-    offset: int,
-):
-    return search_topics_by_name_in_module(
-        backend_client=backend_client,
-        module_id=module_id,
-        query=query,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
 def get_topic_detail_handler(
     *,
     backend_client: BackendClient,
@@ -167,4 +52,21 @@ def get_topic_detail_handler(
     return get_topic_detail(
         backend_client=backend_client,
         topic_id=topic_id,
+    )
+
+
+@with_error_handling
+@with_backend_client
+def get_topics_by_tags_handler(
+    *, 
+    backend_client: BackendClient, 
+    tags: list[str], 
+    limit: int, 
+    offset: int
+):
+    return get_topics_by_tags(
+        backend_client=backend_client,
+        tags=tags,
+        limit=limit,
+        offset=offset,
     )

@@ -1,7 +1,5 @@
 from src.controllers.skills_controller import (
     get_skills,
-    get_skills_by_type,
-    search_skills,
     get_skill_detail,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
@@ -18,40 +16,6 @@ def get_skills_handler(
 ):
     return get_skills(
         backend_client=backend_client,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def get_skills_by_type_handler(
-    *,
-    backend_client: BackendClient,
-    skill_type: str,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return get_skills_by_type(
-        backend_client=backend_client,
-        skill_type=skill_type,
-        limit=limit,
-        offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def search_skills_handler(
-    *,
-    backend_client: BackendClient,
-    query: str,
-    limit: int = 20,
-    offset: int = 0,
-):
-    return search_skills(
-        backend_client=backend_client,
-        query=query,
         limit=limit,
         offset=offset,
     )
