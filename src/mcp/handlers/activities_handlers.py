@@ -77,6 +77,7 @@ def get_activity_detail_handler(
 @with_backend_client
 def generate_activity_handler(
     *,
+    token: str,
     backend_client: BackendClient,
     activity: dict,
     teacher: dict,
