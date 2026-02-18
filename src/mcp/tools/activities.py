@@ -99,12 +99,14 @@ def get_activity_detail(
     ),
 )
 def generate_activity(
+    token: str,
     activity: dict,
     teacher: dict,
     module_ids: list[str],
     topic_ids: list[str],
 ):
     return generate_activity_handler(
+        token=token,
         activity=activity,
         teacher=teacher,
         module_ids=module_ids,
