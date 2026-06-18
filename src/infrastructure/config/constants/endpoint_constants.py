@@ -33,6 +33,9 @@ MCP_ACTIVITY_DETAIL = f"{BASE}/mcp/get_activity_detail"
 # Activity PDF generation
 MCP_GENERATE_ACTIVITY = f"{BASE}/mcp/generate_activity"
 
+# Component alternatives
+MCP_COMPONENT_ALTERNATIVES_ENSURE_INVENTORY = f"{BASE}/component_alternatives/ensure_inventory"
+
 
 # Texts
 MCP_TEXTS = f"{BASE}/mcp/get_texts"
