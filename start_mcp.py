@@ -7,6 +7,7 @@ PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 import src.mcp.tools.activities
+import src.mcp.tools.component_alternatives
 import src.mcp.tools.modules
 import src.mcp.tools.feedback
 import src.mcp.tools.grades
