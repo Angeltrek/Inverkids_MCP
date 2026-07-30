@@ -1,3 +1,4 @@
+from src.app.validators import validate_activity_content
 from src.controllers.activities_controller import (
     get_activities_by_module,
     get_activities_by_skill,
@@ -84,6 +85,8 @@ def generate_activity_handler(
     module_ids: list[str],
     topic_ids: list[str],
 ):
+    validate_activity_content(activity)
+
     return generate_activity(
         backend_client=backend_client,
         activity=activity,
