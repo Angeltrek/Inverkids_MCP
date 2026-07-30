@@ -92,7 +92,12 @@ def get_activity_detail(
     name="generate_activity",
     description=(
         "Generates student and teacher versions in ES or EN."
-        "- activity: Activity details as a dictionary (use internally)"
+        "- activity: Activity details as a dictionary (use internally). "
+        "Each item in activity['exercises'] must have a 'type' and 'prompt'. "
+        "Exercises with type 'multiple_choice' or 'true_false' are REQUIRED to also "
+        "include a non-empty 'options' array (list of choice strings) and a "
+        "'correct_option' string matching one of those choices. Calls missing this "
+        "will be rejected with a validation error."
         "- teacher: Teacher details as a dictionary (use internally)"
         "- module_ids: Internal module identifiers (use internally)"
         "- topic_ids: Internal topic identifiers (use internally)"
