@@ -1,6 +1,5 @@
 from src.controllers.skills_controller import (
     get_skills,
-    get_all_skills_summary,
     search_skills_by_keywords,
     get_skill_detail,
 )
@@ -20,19 +19,6 @@ def get_skills_handler(
         backend_client=backend_client,
         limit=limit,
         offset=offset,
-    )
-
-
-@with_error_handling
-@with_backend_client
-def get_all_skills_summary_handler(
-    *,
-    backend_client: BackendClient,
-    lang: str = "es",
-):
-    return get_all_skills_summary(
-        backend_client=backend_client,
-        lang=lang,
     )
 
 
