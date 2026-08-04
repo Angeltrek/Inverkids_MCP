@@ -112,7 +112,7 @@ class BackendClient:
             extra={
                 "url": url,
                 "status": status,
-                "message": message,
+                "error_message": message,
                 "response_headers": dict(response.headers),
             }
         )
