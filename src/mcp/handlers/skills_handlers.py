@@ -1,6 +1,7 @@
 from src.controllers.skills_controller import (
     get_skills,
     get_all_skills_summary,
+    search_skills_by_keywords,
     get_skill_detail,
 )
 from src.infrastructure.decorators import with_backend_client, with_error_handling
@@ -31,6 +32,21 @@ def get_all_skills_summary_handler(
 ):
     return get_all_skills_summary(
         backend_client=backend_client,
+        lang=lang,
+    )
+
+
+@with_error_handling
+@with_backend_client
+def search_skills_by_keywords_handler(
+    *,
+    backend_client: BackendClient,
+    keywords: list[str],
+    lang: str = "es",
+):
+    return search_skills_by_keywords(
+        backend_client=backend_client,
+        keywords=keywords,
         lang=lang,
     )
 
