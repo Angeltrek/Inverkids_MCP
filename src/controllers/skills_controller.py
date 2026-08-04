@@ -1,5 +1,6 @@
 from src.infrastructure.config.constants.endpoint_constants import (
     MCP_SKILLS,
+    MCP_ALL_SKILLS_SUMMARY,
     MCP_SKILL_DETAIL,
 )
 from src.infrastructure.http.backend_client import BackendClient
@@ -17,6 +18,17 @@ def get_skills(
             "limit": limit,
             "offset": offset,
         },
+    )
+
+
+def get_all_skills_summary(
+    *,
+    backend_client: BackendClient,
+    lang: str = "es",
+):
+    return backend_client.get(
+        MCP_ALL_SKILLS_SUMMARY,
+        params={"lang": lang},
     )
 
 

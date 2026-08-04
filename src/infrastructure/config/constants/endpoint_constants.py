@@ -53,6 +53,7 @@ MCP_TEXT_DETAIL = f"{BASE}/mcp/get_text_detail"
 
 # Skills
 MCP_SKILLS = f"{BASE}/mcp/get_skills"
+MCP_ALL_SKILLS_SUMMARY = f"{BASE}/mcp/get_all_skills_summary"
 MCP_SKILL_DETAIL = f"{BASE}/mcp/get_skill_detail"
 
 
