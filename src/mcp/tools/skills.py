@@ -31,7 +31,7 @@ def get_skills(
         "Search the skills catalog (CHAs: competencias, habilidades, actitudes) by "
         "keywords, returning up to 50 matching skills with the fields needed to assign "
         "them to an activity component: skill_id, description, ambito, subambito, "
-        "skill_type, domain, dimension. "
+        "domain, dimension. "
         "Each keyword is matched (case-insensitive, partial match) against the skill "
         "description and against its ambito and subambito names; results from all "
         "keywords are combined without duplicates. "
