@@ -25,10 +25,17 @@ def search_skills_by_keywords(
     backend_client: BackendClient,
     keywords: list[str],
     lang: str = "es",
+    white_label: str | None = None,
+    level: str | None = None,
 ):
+    params = {"keywords[]": keywords, "lang": lang}
+    if white_label and level:
+        params["white_label"] = white_label
+        params["level"] = level
+
     return backend_client.get(
         MCP_SEARCH_SKILLS_BY_KEYWORDS,
-        params={"keywords[]": keywords, "lang": lang},
+        params=params,
     )
 
 

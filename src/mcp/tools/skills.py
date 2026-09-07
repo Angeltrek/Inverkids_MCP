@@ -43,16 +43,28 @@ def get_skills(
         "them, with correct accents. "
         "If no skill matches the given keywords, the search automatically retries with "
         "a broad fallback keyword list, so it will rarely return empty. "
+        "When the request payload provides white_label and level, pass BOTH unchanged: "
+        "the search (and its fallback) is then restricted to skills of that level, each "
+        "result includes its 'levels', and the response reports level_filtered=true. "
         "Parameters:"
         "- keywords: List of search words extracted from the component/activity"
         "- lang: Language for skill text, 'es' or 'en' (default: 'es')"
+        "- white_label: Brand/catalog the component belongs to, e.g. 'inverkids_school_v3' (optional, use with level)"
+        "- level: Level of the component within that white_label, e.g. '1' or 'Finanzas Personales' (optional, use with white_label)"
     ),
 )
 def search_skills_by_keywords(
     keywords: list[str],
     lang: str = "es",
+    white_label: str | None = None,
+    level: str | None = None,
 ):
-    return search_skills_by_keywords_handler(keywords=keywords, lang=lang)
+    return search_skills_by_keywords_handler(
+        keywords=keywords,
+        lang=lang,
+        white_label=white_label,
+        level=level,
+    )
 
 
 @mcp.tool(

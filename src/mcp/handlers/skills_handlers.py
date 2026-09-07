@@ -29,11 +29,15 @@ def search_skills_by_keywords_handler(
     backend_client: BackendClient,
     keywords: list[str],
     lang: str = "es",
+    white_label: str | None = None,
+    level: str | None = None,
 ):
     return search_skills_by_keywords(
         backend_client=backend_client,
         keywords=keywords,
         lang=lang,
+        white_label=white_label,
+        level=level,
     )
 
 
